@@ -258,7 +258,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `moddb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `date_created`, `img_url`) VALUES (1, 'John', 'Doe', 'admin', 'admin', 'jdoe@email.com', 1, 'ROLE_ADMIN', '2022-06-21', NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `date_created`, `img_url`) VALUES (1, 'John', 'Doe', 'admin', '$2a$10$jCdkeHwIQujWoQLvQv3YIuyCGwTYL0HF7oFsHRlhai5H.XYzC08Yq', 'jdoe@email.com', 1, 'ROLE_ADMIN', '2022-06-21', NULL);
 
 COMMIT;
 
