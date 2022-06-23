@@ -79,5 +79,7 @@ class ModTest {
 		assertTrue(mod.getPosts().size() > 0);
 
 	}
+	
+	
 
 }

@@ -43,20 +43,15 @@ public class User {
 
 	@Column(name = "img_url")
 	private String image;
-	
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<Mod> mods;
-	
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<ModMedia> modMedias;
-	
-	
 
 	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
-	
 
 	public User() {
 		super();
@@ -149,7 +144,7 @@ public class User {
 	public void setMods(List<Mod> mods) {
 		this.mods = mods;
 	}
-	
+
 	public void addMod(Mod mod) {
 
 		if (mods == null) {
@@ -169,8 +164,7 @@ public class User {
 			mods.remove(mod);
 		}
 	}
-	
-	
+
 	public void addModMedias(ModMedia modMedia) {
 
 		if (modMedias == null) {
@@ -190,9 +184,7 @@ public class User {
 			modMedias.remove(modMedia);
 		}
 	}
-	
-	
-	
+
 	public void addPost(Post post) {
 
 		if (posts == null) {
@@ -212,9 +204,6 @@ public class User {
 			posts.remove(post);
 		}
 	}
-	
-	
-	
 
 	public List<ModMedia> getModMedias() {
 		return modMedias;
@@ -235,6 +224,43 @@ public class User {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	// TODO SKILL
+	// ONE TO MANY SKILL/RESUME
+	// JOIN TABLE Job_skill
+	// COMPOSITE ID jobSKillID
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews;
+
+	public void addReview(Review review) {
+
+		if (reviews == null) {
+			reviews = new ArrayList<>();
+		}
+
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+			review.setUser(this);
+		}
+
+	}
+
+	public void removeReview(Review review) {
+
+		review.setMod(null);
+		if (reviews != null && reviews.contains(review)) {
+			reviews.remove(review);
+
+		}
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 
 	@Override

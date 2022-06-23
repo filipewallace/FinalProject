@@ -19,51 +19,50 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name="game_mod")
+@Table(name = "game_mod")
 public class Mod {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String title;
-	
+
 	private String description;
-	
+
 	@Column(name = "date_created")
 	@CreationTimestamp
 	private LocalDateTime dateCreated;
-	
+
 	@Column(name = "date_updated")
 	@UpdateTimestamp
 	private LocalDateTime dateUpdated;
-	
+
 	private String version;
-	
+
 	private String requirements;
-	
-	@Column(name= "img_url")
+
+	@Column(name = "img_url")
 	private String imageUrl;
-	
+
 	private double price;
-	
-	@Column(name= "download_link")
+
+	@Column(name = "download_link")
 	private String downloadLink;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "game_id")
 	private Game games;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@OneToMany(mappedBy = "mod")
 	private List<ModMedia> modMedias;
-	
+
 	@OneToMany(mappedBy = "mod")
 	private List<Post> posts;
-	
 
 	public Mod() {
 		super();
@@ -164,9 +163,6 @@ public class Mod {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-
-	
 
 	public List<ModMedia> getModMedias() {
 		return modMedias;
@@ -175,16 +171,15 @@ public class Mod {
 	public void setModMedias(List<ModMedia> modMedias) {
 		this.modMedias = modMedias;
 	}
+
 	public List<Post> getPosts() {
 		return posts;
 	}
-	
+
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
 
-	
-	
 	public void addModMedia(ModMedia modMedia) {
 
 		if (modMedias == null) {
@@ -204,7 +199,7 @@ public class Mod {
 			modMedias.remove(modMedia);
 		}
 	}
-	
+
 	public void addPost(Post post) {
 
 		if (posts == null) {
@@ -224,8 +219,43 @@ public class Mod {
 			posts.remove(post);
 		}
 	}
-	
 
+	// TODO SKILL
+	// ONE TO MANY SKILL/RESUME
+	// JOIN TABLE Job_skill
+	// COMPOSITE ID jobSKillID
+	@OneToMany(mappedBy = "mod")
+	private List<Review> reviews;
+
+	public void addReview(Review review) {
+
+		if (reviews == null) {
+			reviews = new ArrayList<>();
+		}
+
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+			review.setMod(this);
+		}
+
+	}
+
+	public void removeReview(Review review) {
+
+		review.setMod(null);
+		if (reviews != null && reviews.contains(review)) {
+			reviews.remove(review);
+
+		}
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 
 	@Override
 	public int hashCode() {
@@ -250,6 +280,5 @@ public class Mod {
 				+ ", dateUpdated=" + dateUpdated + ", version=" + version + ", requirements=" + requirements
 				+ ", imageUrl=" + imageUrl + ", price=" + price + ", downloadLink=" + downloadLink + "]";
 	}
-	
-	
+
 }
