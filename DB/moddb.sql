@@ -132,11 +132,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mod`
+-- Table `game_mod`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mod` ;
+DROP TABLE IF EXISTS `game_mod` ;
 
-CREATE TABLE IF NOT EXISTS `mod` (
+CREATE TABLE IF NOT EXISTS `game_mod` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(200) NULL,
   `description` TEXT NULL,
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `review` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_review_mod1`
     FOREIGN KEY (`mod_id`)
-    REFERENCES `mod` (`id`)
+    REFERENCES `game_mod` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   INDEX `fk_post_post1_idx` (`reply_to_id` ASC),
   CONSTRAINT `fk_discussion_mod1`
     FOREIGN KEY (`mod_id`)
-    REFERENCES `mod` (`id`)
+    REFERENCES `game_mod` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_discussion_user1`
@@ -280,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `user_has_mod` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_has_mod_mod1`
     FOREIGN KEY (`mod_id`)
-    REFERENCES `mod` (`id`)
+    REFERENCES `game_mod` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -299,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `mod_has_order` (
   INDEX `fk_mod_has_order_mod1_idx` (`mod_id` ASC),
   CONSTRAINT `fk_mod_has_order_mod1`
     FOREIGN KEY (`mod_id`)
-    REFERENCES `mod` (`id`)
+    REFERENCES `game_mod` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mod_has_order_order1`
@@ -350,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `mod_media` (
   INDEX `fk_mod_media_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_mod_media_mod1`
     FOREIGN KEY (`mod_id`)
-    REFERENCES `mod` (`id`)
+    REFERENCES `game_mod` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mod_media_user1`
@@ -436,11 +436,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `mod`
+-- Data for table `game_mod`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `moddb`;
-INSERT INTO `mod` (`id`, `title`, `description`, `date_created`, `date_updated`, `version`, `requirements`, `img_url`, `price`, `game_id`, `user_id`, `download_link`) VALUES (1, 'Rani Saves the Princess', 'Rani has special powers to save the princess.', '2022-01-02', '2022-02-03', '1.2', 'Processor Intel Potato Core', 'test', 10.99, 1, 1, 'test');
+INSERT INTO `game_mod` (`id`, `title`, `description`, `date_created`, `date_updated`, `version`, `requirements`, `img_url`, `price`, `game_id`, `user_id`, `download_link`) VALUES (1, 'Rani Saves the Princess', 'Rani has special powers to save the princess.', '2022-01-02', '2022-02-03', '1.2', 'Processor Intel Potato Core', 'test', 10.99, 1, 1, 'test');
 
 COMMIT;
 
