@@ -6,6 +6,16 @@
     </provider>
     
     <!-- begin entities -->
+    <class>com.skilldistillery.mod.entities.Category</class>
+    <class>com.skilldistillery.mod.entities.Developer</class>
+    <class>com.skilldistillery.mod.entities.EsrbRating</class>
+    <class>com.skilldistillery.mod.entities.Game</class>
+    <class>com.skilldistillery.mod.entities.Mod</class>
+    <class>com.skilldistillery.mod.entities.ModMedia</class>
+    <class>com.skilldistillery.mod.entities.Platform</class>
+    <class>com.skilldistillery.mod.entities.Post</class>
+    <class>com.skilldistillery.mod.entities.Publisher</class>
+    <class>com.skilldistillery.mod.entities.Review</class>
     <class>com.skilldistillery.mod.entities.User</class>
     <!-- end entities -->
 
