@@ -240,11 +240,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `order`
+-- Table `mod_order`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `order` ;
+DROP TABLE IF EXISTS `mod_order` ;
 
-CREATE TABLE IF NOT EXISTS `order` (
+CREATE TABLE IF NOT EXISTS `mod_order` (
   `id` INT NOT NULL,
   `cc_owner_name` VARCHAR(200) NULL,
   `cc_number` VARCHAR(45) NULL,
@@ -304,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `mod_has_order` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mod_has_order_order1`
     FOREIGN KEY (`order_id`)
-    REFERENCES `order` (`id`)
+    REFERENCES `mod_order` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -476,11 +476,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `order`
+-- Data for table `mod_order`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `moddb`;
-INSERT INTO `order` (`id`, `cc_owner_name`, `cc_number`, `cc_exp_date`, `cvc`, `billing_address`, `user_id`) VALUES (1, 'Joe Doe', '1234567891012', '2022-02-03', 'Joe Doe', '1234 Elm Lane', NULL);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `cc_number`, `cc_exp_date`, `cvc`, `billing_address`, `user_id`) VALUES (1, 'Joe Doe', '1234567891012', '2022-02-03', 'Joe Doe', '1234 Elm Lane', NULL);
 
 COMMIT;
 

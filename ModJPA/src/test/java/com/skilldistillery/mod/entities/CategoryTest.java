@@ -49,5 +49,13 @@ private static EntityManagerFactory emf;
 		assertNotNull(category);
 		assertEquals("Adventure", category.getGenre());
 	}
+	
+	@Test	
+	void test_Category_Game_mapping() {
+		assertNotNull(category);
+		assertNotNull(category.getGames());
+		assertTrue(category.getGames().size() > 0);
+		
+	}
 
 }

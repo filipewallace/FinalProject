@@ -1,5 +1,7 @@
 package com.skilldistillery.mod.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Game {
@@ -23,9 +28,33 @@ public class Game {
 
 	@Column(name = "img_url")
 	private String imageUrl;
+	
+	@ManyToMany
+	@JoinTable(name = "game_has_category",
+	joinColumns = @JoinColumn(name = "game_id"),
+	inverseJoinColumns = @JoinColumn(name = "category_id")
+			   )
+	private List<Category> categories;
 
 	public Game() {
 		super();
+	}
+	
+	public void addCategory(Category cat) {
+		if (categories == null)
+			categories = new ArrayList<>();
+		if (!categories.contains(cat)) {
+			categories.add(cat);
+			cat.addGame(this);
+
+		}
+	}
+
+	public void removeCategory(Category cat) {
+		if (categories != null) {
+			categories.remove(cat);
+			cat.removeGame(this);
+		}
 	}
 
 	public int getId() {
@@ -66,6 +95,16 @@ public class Game {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+	
+	
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 
 	@Override

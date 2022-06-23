@@ -1,11 +1,14 @@
 package com.skilldistillery.mod.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Category {
@@ -15,9 +18,30 @@ public class Category {
 	private int id;
 
 	private String genre;
+	
+	
+	@ManyToMany(mappedBy = "categories")
+	private List<Game> games;
 
 	public Category() {
 		super();
+	}
+	
+	public void addGame(Game g) {
+		if (games == null)
+			games = new ArrayList<>();
+		if (!games.contains(g)) {
+			games.add(g);
+			g.addCategory(this);
+
+		}
+	}
+
+	public void removeGame(Game g) {
+		if (games != null) {
+			games.remove(g);
+			g.removeCategory(this);
+		}
 	}
 
 	public int getId() {
@@ -34,6 +58,16 @@ public class Category {
 
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+	
+	
+
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
 	}
 
 	@Override
@@ -55,7 +89,9 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", genre=" + genre + "]";
+		return "Category [id=" + id + ", genre=" + genre + ", games=" + games + "]";
 	}
+
+
 
 }
