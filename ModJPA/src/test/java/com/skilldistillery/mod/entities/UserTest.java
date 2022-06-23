@@ -52,6 +52,22 @@ class UserTest {
 		assertEquals("admin", user.getUsername());
 	}
 	
+	@Test
+	void test_User_Mod_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getMods());
+		assertTrue(user.getMods().size() > 0);
+
+	}
+	
+	@Test
+	void test_User_ModMedia_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getModMedias());
+		assertTrue(user.getModMedias().size() > 0);
+
+	}
+
 
 
 }

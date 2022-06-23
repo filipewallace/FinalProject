@@ -176,7 +176,7 @@ public class Game {
 		}
 	}
 
-	public void removeGame(Mod mod) {
+	public void removeMod(Mod mod) {
 
 		mod.setGames(null);
 		if (mods != null && mods.contains(mod)) {

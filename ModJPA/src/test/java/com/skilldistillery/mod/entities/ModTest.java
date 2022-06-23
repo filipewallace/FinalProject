@@ -56,5 +56,28 @@ class ModTest {
 		assertEquals("Elden Ring", mod.getGames().getName());
 
 	}
+	
+	@Test
+	void test_user_mod_mapping() {
+		assertNotNull(mod);
+		assertNotNull(mod.getUser());
+		assertEquals("John", mod.getUser().getFirstName());
+	}
+	
+	
+	@Test
+	void test_ModMedias_mod_mapping() {
+		assertNotNull(mod);
+		assertNotNull(mod.getModMedias());
+		assertTrue(mod.getModMedias().size() > 0);
+	}
+	
+	@Test
+	void test_mod_Post_mapping() {
+		assertNotNull(mod);
+		assertNotNull(mod.getPosts());
+		assertTrue(mod.getPosts().size() > 0);
+
+	}
 
 }

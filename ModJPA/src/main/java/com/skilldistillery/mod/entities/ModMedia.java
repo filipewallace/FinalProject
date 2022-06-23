@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +23,15 @@ public class ModMedia {
 	private String mediaUrl;
 
 	private String description;
+	
+	@ManyToOne
+	@JoinColumn(name = "mod_id")
+	private Mod mod;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public ModMedia() {
 		super();
@@ -48,6 +59,22 @@ public class ModMedia {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Mod getMod() {
+		return mod;
+	}
+
+	public void setMod(Mod mod) {
+		this.mod = mod;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

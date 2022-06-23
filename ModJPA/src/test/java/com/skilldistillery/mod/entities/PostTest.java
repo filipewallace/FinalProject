@@ -49,5 +49,22 @@ private static EntityManagerFactory emf;
 		assertNotNull(post);
 		assertEquals("Mod Okay", post.getTitle());
 	}
+	
+	
+	@Test	
+	void test_Post_User_mapping() {
+		assertNotNull(post);
+		assertNotNull(post.getUser());
+		assertEquals("John", post.getUser().getFirstName());
+	}
+	
+	
+	@Test	
+	void test_Post_Mod_mapping() {
+		assertNotNull(post);
+		assertNotNull(post.getMod());
+		assertEquals("Processor Intel Potato Core", post.getMod().getRequirements());
+	}
+
 
 }

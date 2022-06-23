@@ -1,6 +1,8 @@
 package com.skilldistillery.mod.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -40,6 +43,20 @@ public class User {
 
 	@Column(name = "img_url")
 	private String image;
+	
+	
+	@OneToMany(mappedBy = "user")
+	private List<Mod> mods;
+	
+	
+	@OneToMany(mappedBy = "user")
+	private List<ModMedia> modMedias;
+	
+	
+
+	@OneToMany(mappedBy = "user")
+	private List<Post> posts;
+	
 
 	public User() {
 		super();
@@ -123,6 +140,96 @@ public class User {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public List<Mod> getMods() {
+		return mods;
+	}
+
+	public void setMods(List<Mod> mods) {
+		this.mods = mods;
+	}
+	
+	public void addMod(Mod mod) {
+
+		if (mods == null) {
+			mods = new ArrayList<>();
+		}
+
+		if (!mods.contains(mod)) {
+			mods.add(mod);
+			mod.setUser(this);
+		}
+	}
+
+	public void removeMod(Mod mod) {
+
+		mod.setUser(null);
+		if (mods != null && mods.contains(mod)) {
+			mods.remove(mod);
+		}
+	}
+	
+	
+	public void addModMedias(ModMedia modMedia) {
+
+		if (modMedias == null) {
+			modMedias = new ArrayList<>();
+		}
+
+		if (!modMedias.contains(modMedia)) {
+			modMedias.add(modMedia);
+			modMedia.setUser(this);
+		}
+	}
+
+	public void removeModMedias(ModMedia modMedia) {
+
+		modMedia.setUser(null);
+		if (modMedias != null && modMedias.contains(modMedia)) {
+			modMedias.remove(modMedia);
+		}
+	}
+	
+	
+	
+	public void addPost(Post post) {
+
+		if (posts == null) {
+			posts = new ArrayList<>();
+		}
+
+		if (!posts.contains(post)) {
+			posts.add(post);
+			post.setUser(this);
+		}
+	}
+
+	public void removePost(Post post) {
+
+		post.setUser(null);
+		if (posts != null && posts.contains(post)) {
+			posts.remove(post);
+		}
+	}
+	
+	
+	
+
+	public List<ModMedia> getModMedias() {
+		return modMedias;
+	}
+
+	public void setModMedias(List<ModMedia> modMedias) {
+		this.modMedias = modMedias;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	@Override

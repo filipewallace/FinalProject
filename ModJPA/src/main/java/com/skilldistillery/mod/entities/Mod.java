@@ -1,6 +1,8 @@
 package com.skilldistillery.mod.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -50,6 +53,17 @@ public class Mod {
 	@ManyToOne
 	@JoinColumn(name = "game_id")
 	private Game games;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	@OneToMany(mappedBy = "mod")
+	private List<ModMedia> modMedias;
+	
+	@OneToMany(mappedBy = "mod")
+	private List<Post> posts;
+	
 
 	public Mod() {
 		super();
@@ -142,6 +156,76 @@ public class Mod {
 	public void setGames(Game games) {
 		this.games = games;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+
+	
+
+	public List<ModMedia> getModMedias() {
+		return modMedias;
+	}
+
+	public void setModMedias(List<ModMedia> modMedias) {
+		this.modMedias = modMedias;
+	}
+	public List<Post> getPosts() {
+		return posts;
+	}
+	
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	
+	
+	public void addModMedia(ModMedia modMedia) {
+
+		if (modMedias == null) {
+			modMedias = new ArrayList<>();
+		}
+
+		if (!modMedias.contains(modMedia)) {
+			modMedias.add(modMedia);
+			modMedia.setMod(this);
+		}
+	}
+
+	public void removeMedia(ModMedia modMedia) {
+
+		modMedia.setMod(null);
+		if (modMedias != null && modMedias.contains(modMedia)) {
+			modMedias.remove(modMedia);
+		}
+	}
+	
+	public void addPost(Post post) {
+
+		if (posts == null) {
+			posts = new ArrayList<>();
+		}
+
+		if (!posts.contains(post)) {
+			posts.add(post);
+			post.setMod(this);
+		}
+	}
+
+	public void removePost(Post post) {
+
+		post.setMod(null);
+		if (posts != null && posts.contains(post)) {
+			posts.remove(post);
+		}
+	}
+	
+
 
 	@Override
 	public int hashCode() {

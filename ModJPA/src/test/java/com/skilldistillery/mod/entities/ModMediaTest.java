@@ -49,5 +49,20 @@ private static EntityManagerFactory emf;
 		assertNotNull(modMedia);
 		assertEquals("test", modMedia.getDescription());
 	}
+	
+	@Test
+	void test_ModMedia_mod_mapping() {
+		assertNotNull(modMedia);
+		assertNotNull(modMedia.getMod());
+		assertEquals("Processor Intel Potato Core", modMedia.getMod().getRequirements());
+	}
+	
+	
+	@Test	
+	void test_ModMedia_User_mapping() {
+		assertNotNull(modMedia);
+		assertNotNull(modMedia.getUser());
+		assertEquals("John", modMedia.getUser().getFirstName());
+	}
 
 }
