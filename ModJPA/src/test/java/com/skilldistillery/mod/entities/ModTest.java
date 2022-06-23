@@ -14,15 +14,15 @@ import org.junit.jupiter.api.Test;
 
 class ModTest {
 
-private static EntityManagerFactory emf;
-	
+	private static EntityManagerFactory emf;
+
 	private EntityManager em;
-	
+
 	private Mod mod;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		
+
 		emf = Persistence.createEntityManagerFactory("ModJPA");
 	}
 
@@ -36,7 +36,6 @@ private static EntityManagerFactory emf;
 		em = emf.createEntityManager();
 		mod = em.find(Mod.class, 1);
 	}
-	
 
 	@AfterEach
 	void tearDown() throws Exception {
@@ -44,10 +43,18 @@ private static EntityManagerFactory emf;
 		mod = null;
 	}
 
-	@Test	
+	@Test
 	void test_Mod_entity_mapping() {
 		assertNotNull(mod);
 		assertEquals("Rani Saves the Princess", mod.getTitle());
+	}
+
+	@Test
+	void test_Game_EsrbRating_mapping() {
+		assertNotNull(mod);
+		assertNotNull(mod.getGames());
+		assertEquals("Elden Ring", mod.getGames().getName());
+
 	}
 
 }

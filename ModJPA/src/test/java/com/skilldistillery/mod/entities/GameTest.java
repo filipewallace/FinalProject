@@ -63,4 +63,36 @@ class GameTest {
 		assertEquals("Pony", game.getDev().getName());
 
 	}
+
+	@Test
+	void test_Game_Publisher_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getPublisher());
+		assertEquals("Cupcake", game.getPublisher().getName());
+
+	}
+
+	@Test
+	void test_Game_Platform_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getPlatform());
+		assertEquals("PC", game.getPlatform().getName());
+
+	}
+
+	@Test
+	void test_Game_EsrbRating_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getRating());
+		assertEquals("Everyone", game.getRating().getName());
+
+	}
+
+	@Test
+	void test_Game_Mod_mapping() {
+		assertNotNull(game);
+		assertNotNull(game.getMods());
+		assertTrue(game.getMods().size() > 0);
+
+	}
 }

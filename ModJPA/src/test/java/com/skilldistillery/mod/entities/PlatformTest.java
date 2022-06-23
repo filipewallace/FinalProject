@@ -49,5 +49,13 @@ private static EntityManagerFactory emf;
 		assertNotNull(platform);
 		assertEquals("PC", platform.getName());
 	}
+	
+	@Test
+	void test_Game_Category_mapping() {
+		assertNotNull(platform);
+		assertNotNull(platform.getGames());
+		assertTrue(platform.getGames().size() > 0);
+
+	}
 
 }

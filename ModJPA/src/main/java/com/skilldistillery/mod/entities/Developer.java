@@ -26,7 +26,6 @@ public class Developer {
 	@Column(name = "web_link")
 	private String webLink;
 
-	// many to one user/jobListing
 	@OneToMany(mappedBy = "dev")
 	private List<Game> games;
 

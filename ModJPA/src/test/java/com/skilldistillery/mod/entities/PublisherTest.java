@@ -1,6 +1,8 @@
 package com.skilldistillery.mod.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -48,6 +50,14 @@ private static EntityManagerFactory emf;
 	void test_Publisher_entity_mapping() {
 		assertNotNull(publisher);
 		assertEquals("Cupcake", publisher.getName());
+	}
+	
+	@Test
+	void test_Game_Category_mapping() {
+		assertNotNull(publisher);
+		assertNotNull(publisher.getGames());
+		assertTrue(publisher.getGames().size() > 0);
+
 	}
 
 }

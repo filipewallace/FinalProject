@@ -14,15 +14,15 @@ import org.junit.jupiter.api.Test;
 
 class EsrbRatingTest {
 
-private static EntityManagerFactory emf;
-	
+	private static EntityManagerFactory emf;
+
 	private EntityManager em;
-	
+
 	private EsrbRating esrbRating;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		
+
 		emf = Persistence.createEntityManagerFactory("ModJPA");
 	}
 
@@ -36,7 +36,6 @@ private static EntityManagerFactory emf;
 		em = emf.createEntityManager();
 		esrbRating = em.find(EsrbRating.class, 1);
 	}
-	
 
 	@AfterEach
 	void tearDown() throws Exception {
@@ -44,10 +43,17 @@ private static EntityManagerFactory emf;
 		esrbRating = null;
 	}
 
-	@Test	
+	@Test
 	void test_EsrbRating_entity_mapping() {
 		assertNotNull(esrbRating);
 		assertEquals("Everyone", esrbRating.getName());
 	}
 
+	@Test
+	void test_Game_esrbRating_mapping() {
+		assertNotNull(esrbRating);
+		assertNotNull(esrbRating.getGames());
+		assertTrue(esrbRating.getGames().size() > 0);
+
+	}
 }

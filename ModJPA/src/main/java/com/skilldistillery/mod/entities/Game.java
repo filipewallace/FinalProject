@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Game {
@@ -34,30 +35,36 @@ public class Game {
 	@JoinTable(name = "game_has_category", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private List<Category> categories;
 
-	// many to one studyguide/user
 	@ManyToOne
 	@JoinColumn(name = "developer_id")
 	private Developer dev;
+
+	@ManyToOne
+	@JoinColumn(name = "publisher_id")
+	private Publisher publisher;
+
+	@ManyToOne
+	@JoinColumn(name = "platform_id")
+	private Platform platform;
+
+	@ManyToOne
+	@JoinColumn(name = "esrb_rating_id")
+	private EsrbRating rating;
+
+	// many to one user/jobListing
+	@OneToMany(mappedBy = "games")
+	private List<Mod> mods;
 
 	public Game() {
 		super();
 	}
 
-	public void addCategory(Category cat) {
-		if (categories == null)
-			categories = new ArrayList<>();
-		if (!categories.contains(cat)) {
-			categories.add(cat);
-			cat.addGame(this);
-
-		}
+	public Publisher getPublisher() {
+		return publisher;
 	}
 
-	public void removeCategory(Category cat) {
-		if (categories != null) {
-			categories.remove(cat);
-			cat.removeGame(this);
-		}
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
 	}
 
 	public int getId() {
@@ -114,6 +121,67 @@ public class Game {
 
 	public void setDev(Developer dev) {
 		this.dev = dev;
+	}
+
+	public Platform getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(Platform platform) {
+		this.platform = platform;
+	}
+
+	public EsrbRating getRating() {
+		return rating;
+	}
+
+	public void setRating(EsrbRating rating) {
+		this.rating = rating;
+	}
+
+	public List<Mod> getMods() {
+		return mods;
+	}
+
+	public void setMods(List<Mod> mods) {
+		this.mods = mods;
+	}
+
+	public void addCategory(Category cat) {
+		if (categories == null)
+			categories = new ArrayList<>();
+		if (!categories.contains(cat)) {
+			categories.add(cat);
+			cat.addGame(this);
+
+		}
+	}
+
+	public void removeCategory(Category cat) {
+		if (categories != null) {
+			categories.remove(cat);
+			cat.removeGame(this);
+		}
+	}
+
+	public void addMod(Mod mod) {
+
+		if (mods == null) {
+			mods = new ArrayList<>();
+		}
+
+		if (!mods.contains(mod)) {
+			mods.add(mod);
+			mod.setGames(this);
+		}
+	}
+
+	public void removeGame(Mod mod) {
+
+		mod.setGames(null);
+		if (mods != null && mods.contains(mod)) {
+			mods.remove(mod);
+		}
 	}
 
 	@Override

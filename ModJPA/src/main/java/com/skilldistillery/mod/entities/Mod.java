@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -44,6 +46,10 @@ public class Mod {
 	
 	@Column(name= "download_link")
 	private String downloadLink;
+	
+	@ManyToOne
+	@JoinColumn(name = "game_id")
+	private Game games;
 
 	public Mod() {
 		super();
@@ -127,6 +133,14 @@ public class Mod {
 
 	public void setDownloadLink(String downloadLink) {
 		this.downloadLink = downloadLink;
+	}
+
+	public Game getGames() {
+		return games;
+	}
+
+	public void setGames(Game games) {
+		this.games = games;
 	}
 
 	@Override

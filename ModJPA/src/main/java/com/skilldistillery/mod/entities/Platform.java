@@ -1,11 +1,14 @@
 package com.skilldistillery.mod.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Platform {
@@ -15,6 +18,10 @@ public class Platform {
 	private int id;
 
 	private String name;
+
+	// many to one user/jobListing
+	@OneToMany(mappedBy = "platform")
+	private List<Game> games;
 
 	public Platform() {
 		super();
@@ -34,6 +41,34 @@ public class Platform {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
+	}
+
+	public void addGame(Game game) {
+
+		if (games == null) {
+			games = new ArrayList<>();
+		}
+
+		if (!games.contains(game)) {
+			games.add(game);
+			game.setPlatform(this);
+		}
+	}
+
+	public void removeGame(Game game) {
+
+		game.setPlatform(null);
+		if (games != null && games.contains(game)) {
+			games.remove(game);
+		}
 	}
 
 	@Override

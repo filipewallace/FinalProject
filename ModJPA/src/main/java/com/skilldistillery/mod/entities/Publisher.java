@@ -1,5 +1,7 @@
 package com.skilldistillery.mod.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Publisher {
@@ -22,6 +25,10 @@ public class Publisher {
 
 	@Column(name = "web_link")
 	private String webLink;
+
+	// many to one user/jobListing
+	@OneToMany(mappedBy = "publisher")
+	private List<Game> games;
 
 	public Publisher() {
 		super();
@@ -57,6 +64,34 @@ public class Publisher {
 
 	public void setWebLink(String webLink) {
 		this.webLink = webLink;
+	}
+
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
+	}
+
+	public void addGame(Game game) {
+
+		if (games == null) {
+			games = new ArrayList<>();
+		}
+
+		if (!games.contains(game)) {
+			games.add(game);
+			game.setPublisher(this);
+		}
+	}
+
+	public void removeGame(Game game) {
+
+		game.setPublisher(null);
+		if (games != null && games.contains(game)) {
+			games.remove(game);
+		}
 	}
 
 	@Override

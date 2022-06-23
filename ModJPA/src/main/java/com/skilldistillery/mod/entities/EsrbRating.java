@@ -1,15 +1,18 @@
 package com.skilldistillery.mod.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="esrb_rating")
+@Table(name = "esrb_rating")
 public class EsrbRating {
 
 	@Id
@@ -17,6 +20,9 @@ public class EsrbRating {
 	private int id;
 
 	private String name;
+
+	@OneToMany(mappedBy = "rating")
+	private List<Game> games;
 
 	public EsrbRating() {
 		super();
@@ -36,6 +42,34 @@ public class EsrbRating {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
+	}
+
+	public void addGame(Game game) {
+
+		if (games == null) {
+			games = new ArrayList<>();
+		}
+
+		if (!games.contains(game)) {
+			games.add(game);
+			game.setRating(this);
+		}
+	}
+
+	public void removeGame(Game game) {
+
+		game.setRating(null);
+		if (games != null && games.contains(game)) {
+			games.remove(game);
+		}
 	}
 
 	@Override
