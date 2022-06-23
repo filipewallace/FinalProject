@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Game {
@@ -28,18 +29,20 @@ public class Game {
 
 	@Column(name = "img_url")
 	private String imageUrl;
-	
+
 	@ManyToMany
-	@JoinTable(name = "game_has_category",
-	joinColumns = @JoinColumn(name = "game_id"),
-	inverseJoinColumns = @JoinColumn(name = "category_id")
-			   )
+	@JoinTable(name = "game_has_category", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private List<Category> categories;
+
+	// many to one studyguide/user
+	@ManyToOne
+	@JoinColumn(name = "developer_id")
+	private Developer dev;
 
 	public Game() {
 		super();
 	}
-	
+
 	public void addCategory(Category cat) {
 		if (categories == null)
 			categories = new ArrayList<>();
@@ -96,8 +99,6 @@ public class Game {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	
-	
 
 	public List<Category> getCategories() {
 		return categories;
@@ -105,6 +106,14 @@ public class Game {
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
+	}
+
+	public Developer getDev() {
+		return dev;
+	}
+
+	public void setDev(Developer dev) {
+		this.dev = dev;
 	}
 
 	@Override

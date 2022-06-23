@@ -13,15 +13,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class DeveloperTest {
-private static EntityManagerFactory emf;
-	
+	private static EntityManagerFactory emf;
+
 	private EntityManager em;
-	
+
 	private Developer developer;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		
+
 		emf = Persistence.createEntityManagerFactory("ModJPA");
 	}
 
@@ -35,7 +35,6 @@ private static EntityManagerFactory emf;
 		em = emf.createEntityManager();
 		developer = em.find(Developer.class, 1);
 	}
-	
 
 	@AfterEach
 	void tearDown() throws Exception {
@@ -43,9 +42,17 @@ private static EntityManagerFactory emf;
 		developer = null;
 	}
 
-	@Test	
+	@Test
 	void test_Developer_entity_mapping() {
 		assertNotNull(developer);
 		assertEquals("Pony", developer.getName());
+	}
+
+	@Test
+	void test_Dev_Game_mapping() {
+		assertNotNull(developer);
+		assertNotNull(developer.getGames());
+		assertTrue(developer.getGames().size() > 0);
+
 	}
 }
