@@ -17,6 +17,7 @@
     <class>com.skilldistillery.mod.entities.Publisher</class>
     <class>com.skilldistillery.mod.entities.Review</class>
     <class>com.skilldistillery.mod.entities.User</class>
+    <class>com.skilldistillery.mod.entities.Order</class>
       <class>com.skilldistillery.mod.entities.CompositeIDReview</class>
     <!-- end entities -->
 
