@@ -1,6 +1,7 @@
 package com.skilldistillery.mod.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -69,5 +70,24 @@ public class CompositeIDReview implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(modId, userId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CompositeIDReview other = (CompositeIDReview) obj;
+		return Objects.equals(modId, other.modId) && Objects.equals(userId, other.userId);
+	}
+	
+	
 
 }

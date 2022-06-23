@@ -19,7 +19,7 @@ import org.hibernate.annotations.CreationTimestamp;
 public class Review {
 
 	@EmbeddedId
-	private CompositeIDReview id;
+	private CompositeIDReview id; 
 
 	@ManyToOne
 	@JoinColumn(name = "user_id") // DB column name
@@ -110,6 +110,7 @@ public class Review {
 		}
 		return reviewed;
 	}
+
 
 	@Override
 	public int hashCode() {
