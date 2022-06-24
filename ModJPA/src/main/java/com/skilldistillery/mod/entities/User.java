@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -43,13 +45,16 @@ public class User {
 
 	@Column(name = "img_url")
 	private String image;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Mod> mods;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<ModMedia> modMedias;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
 
@@ -230,6 +235,7 @@ public class User {
 	// ONE TO MANY SKILL/RESUME
 	// JOIN TABLE Job_skill
 	// COMPOSITE ID jobSKillID
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Review> reviews;
 
