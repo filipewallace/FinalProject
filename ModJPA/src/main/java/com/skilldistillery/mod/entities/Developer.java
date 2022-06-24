@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Developer {
 
@@ -25,7 +27,8 @@ public class Developer {
 
 	@Column(name = "web_link")
 	private String webLink;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "dev")
 	private List<Game> games;
 
