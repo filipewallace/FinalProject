@@ -16,20 +16,23 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User getUserById(int userId) {
-		Optional<User> userOpt = userRepo.findById(userId);
+		User userOpt = userRepo.findById(userId);
 		User user = null;
-		if(userOpt.isPresent()) {
-			user = userOpt.get();
+		if(userOpt != null) {
+			return user;
+			
 		}
-		return user;
+		else {
+			return null;
+		}
 	}
 	
 //-----------------------------------New------------------------------------------------------
 
 	@Override
-	public User showUser(String username, int id) {
+	public User showUser(int id) {
 		
-		return userRepo.findByIdAndUser_Username(id, username);
+		return userRepo.findById(id);
 	}
 
 	@Override
@@ -42,13 +45,23 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public User updateUser(String username, int id, User user) {
-		user = userRepo.saveAndFlush(user);
-		return user;
+	public User updateUser(int id, User user) {
+		User managed = userRepo.findById(id);
+		if(managed != null) {
+			managed.setFirstName(user.getFirstName());
+			managed.setLastName(user.getLastName());
+			managed.setImage(user.getImage());
+			managed.setEmail(user.getEmail());
+			managed.setEnabled(user.isEnabled());
+			
+		}
+	
+		userRepo.saveAndFlush(managed);
+		return managed;
 	}
 
 	@Override
-	public boolean destroyUser(String username, int id) {
+	public boolean destroyUser(int id) {
 		userRepo.deleteById(id);
 		boolean deleted = !userRepo.existsById(id);
 		return deleted;
