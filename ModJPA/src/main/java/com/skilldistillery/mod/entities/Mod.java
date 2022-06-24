@@ -52,7 +52,6 @@ public class Mod {
 	@Column(name = "download_link")
 	private String downloadLink;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "game_id")
 	private Game games;
@@ -60,12 +59,18 @@ public class Mod {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "mod")
 	private List<ModMedia> modMedias;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "mod")
 	private List<Post> posts;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "mod")
+	private List<Review> reviews;
 
 	public Mod() {
 		super();
@@ -223,12 +228,6 @@ public class Mod {
 		}
 	}
 
-	// TODO SKILL
-	// ONE TO MANY SKILL/RESUME
-	// JOIN TABLE Job_skill
-	// COMPOSITE ID jobSKillID
-	@OneToMany(mappedBy = "mod")
-	private List<Review> reviews;
 
 	public void addReview(Review review) {
 

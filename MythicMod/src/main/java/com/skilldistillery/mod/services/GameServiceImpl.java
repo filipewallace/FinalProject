@@ -39,19 +39,15 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public Game createGame(Game game) {
-		Game newGame = gameRepo.findByName(game.getName());
 
-		if (newGame != null) {
+		return gameRepo.saveAndFlush(game);
 
-			return gameRepo.saveAndFlush(game);
-		}
-		return null;
 	}
 
 	@Override
-	public Game updateGame(String gameName, int gameId, Game game) {
+	public Game updateGame(int gameId, Game game) {
 
-		Game updater = gameRepo.findByNameAndId(gameName, gameId);
+		Game updater = getGameById(gameId); 
 
 		if (updater != null) {
 
@@ -66,7 +62,7 @@ public class GameServiceImpl implements GameService {
 			updater.setMods(game.getMods());
 			updater.setRating(game.getRating());
 
-			game = gameRepo.saveAndFlush(game);
+			game = gameRepo.saveAndFlush(updater);
 
 			return game;
 		}
