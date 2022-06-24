@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Platform {
 
@@ -19,7 +21,7 @@ public class Platform {
 
 	private String name;
 
-	// many to one user/jobListing
+	@JsonIgnore
 	@OneToMany(mappedBy = "platform")
 	private List<Game> games;
 

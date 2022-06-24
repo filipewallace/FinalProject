@@ -51,7 +51,6 @@ public class Game {
 	@JoinColumn(name = "esrb_rating_id")
 	private EsrbRating rating;
 
-	// many to one user/jobListing
 	@OneToMany(mappedBy = "games")
 	private List<Mod> mods;
 

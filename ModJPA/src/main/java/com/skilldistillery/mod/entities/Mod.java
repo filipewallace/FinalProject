@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "game_mod")
 public class Mod {
@@ -49,7 +51,8 @@ public class Mod {
 
 	@Column(name = "download_link")
 	private String downloadLink;
-
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "game_id")
 	private Game games;
