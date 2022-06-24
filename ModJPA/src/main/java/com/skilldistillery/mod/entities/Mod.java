@@ -52,7 +52,7 @@ public class Mod {
 	@Column(name = "download_link")
 	private String downloadLink;
 	
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name = "game_id")
 	private Game games;
@@ -60,10 +60,12 @@ public class Mod {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "mod")
 	private List<ModMedia> modMedias;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "mod")
 	private List<Post> posts;
 
