@@ -1,6 +1,6 @@
 package com.skilldistillery.mod.services;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +65,12 @@ public class UserServiceImpl implements UserService {
 		userRepo.deleteById(id);
 		boolean deleted = !userRepo.existsById(id);
 		return deleted;
+	}
+	
+	@Override
+	public List<User> userIndex() {
+
+		return userRepo.findAll();
 	}
 
 }
