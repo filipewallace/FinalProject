@@ -43,8 +43,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(String username, int id, User user) {
-		user = userRepo.saveAndFlush(user);
-		return user;
+		User managed = userRepo.findByIdAndUser_Username(id, username);
+		if(managed != null) {
+			managed.setFirstName(user.getFirstName());
+			managed.setLastName(user.getLastName());
+			managed.setImage(user.getImage());
+			managed.setEmail(user.getEmail());
+			managed.setEnabled(user.isEnabled());
+			managed.setPassword(user.getPassword());
+			managed.setRole(user.getRole());
+		}
+	
+		userRepo.saveAndFlush(managed);
+		return managed;
 	}
 
 	@Override
