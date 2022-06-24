@@ -17,37 +17,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mod.entities.Game;
-import com.skilldistillery.mod.services.GameService;
+import com.skilldistillery.mod.entities.Mod;
+import com.skilldistillery.mod.services.ModService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4200" })
-public class GameController {
+public class ModController {
 
 	@Autowired
-	private GameService gameServ;
+	private ModService modServ;
 
-	@GetMapping("/games/{id}")
-	public Game findGameById(@PathVariable Integer id, HttpServletResponse res) {
+	@GetMapping("/mods/{id}")
+	public Mod findModById(@PathVariable Integer id, HttpServletResponse res) {
 
-		Game game = gameServ.getGameById(id);
-		if (game == null) {
+		Mod mod = modServ.getModById(id);
+		if (mod == null) {
 
 			res.setStatus(404);
 		}
 
-		return game;
+		return mod;
 	}
 
-	@GetMapping("games")
-	public List<Game> gameIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+	@GetMapping("mods")
+	public List<Mod> modIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		try {
-			List<Game> games = gameServ.gameIndex();
-			if (games == null) {
+			List<Mod> mods = modServ.modIndex();
+			if (mods == null) {
 				res.setStatus(404);
 			}
-			return games;
+			return mods;
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
@@ -56,53 +56,53 @@ public class GameController {
 
 	}
 
-	@PostMapping("games")
-	public Game createNewGame(HttpServletRequest req, HttpServletResponse res, @RequestBody Game game,
+	@PostMapping("mods")
+	public Mod createNewMod(HttpServletRequest req, HttpServletResponse res, @RequestBody Mod mod,
 			Principal principal) {
 
 		try {
-			game = gameServ.createGame(game);
-			if (game == null) {
+			mod = modServ.createMod(mod);
+			if (mod == null) {
 
 				res.setStatus(404);
 			} else {
 				res.setStatus(201);
 				StringBuffer url = req.getRequestURL();
-				url.append("/").append(game.getId());
+				url.append("/").append(mod.getId());
 				res.setHeader("Location", url.toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Invalid Todo JSON");
 			res.setStatus(400);
-			game = null;
+			mod = null;
 		}
-		return game;
+		return mod;
 	}
 
-	@PutMapping("games/{id}")
-	public Game updateGameInfo(@PathVariable int id, @RequestBody Game game, HttpServletRequest req,
+	@PutMapping("mods/{id}")
+	public Mod updateModInfo(@PathVariable int id, @RequestBody Mod mod, HttpServletRequest req,
 			HttpServletResponse res, Principal principal) {
 		try {
-			game = gameServ.updateGame(id, game);
-			System.out.println(game);
-			if (game == null) {
+			mod = modServ.updateMod(id, mod);
+			if (mod == null) {
 				res.setStatus(404);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
-			game = null;
+			mod = null;
 		}
-		return game;
+		return mod;
 
 	}
+	
 
-	@DeleteMapping("games/{id}")
+	@DeleteMapping("mods/{id}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
 
 		try {
-			if (gameServ.destroyGame(id)) {
+			if (modServ.destroyMod(id)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
@@ -113,5 +113,4 @@ public class GameController {
 		}
 
 	}
-
 }
