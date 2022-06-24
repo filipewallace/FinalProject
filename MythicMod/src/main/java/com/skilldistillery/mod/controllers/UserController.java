@@ -28,17 +28,13 @@ public class UserController {
 	private UserService userService;
 	
 	// SMOKE TEST ONLY, DELETE/COMMENT OUT LATER
-	@GetMapping("test/users/{userId}")
-	public User getUserForTest(
-	  @PathVariable Integer userId,
-	  HttpServletResponse res
-	) {
-	  User user = userService.getUserById(userId);
-	  if (user == null) {
-	    res.setStatus(404);
-	  }
-	  return user;
-	}
+	/*
+	 * @GetMapping("test/users/{userId}") public User getUserForTest(
+	 * 
+	 * @PathVariable Integer userId, HttpServletResponse res ) { User user =
+	 * userService.getUserById(userId); if (user == null) { res.setStatus(404); }
+	 * return user; }
+	 */
 	
 //	------------------------new----------------------------------------------------------
 	
@@ -47,34 +43,14 @@ public class UserController {
 	
 	
 	
-	@PostMapping("user")
-	public User addNewUser(
-			
-			@RequestBody User user, 
-			HttpServletRequest req, 
-			HttpServletResponse res) {
-		
-		try {
-			user = userService.createUser(user);
-			res.setStatus(201);
-			StringBuffer url = req.getRequestURL();
-			url.append("/").append(user.getId());
-			res.setHeader("Location", url.toString());
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-			res.setStatus(400);
-			user = null;
-		}
-		return user;
-	}
+
 	
 	
 	@DeleteMapping("user/{id}")
-	public void deleteUser(@RequestBody User user,
+	public void deleteUser(
 			HttpServletRequest req,
-			HttpServletResponse res, @PathVariable int id, Principal principal) {
-		if(userService.destroyUser(principal.getName(),id)) {
+			HttpServletResponse res, @PathVariable int id) {
+		if(userService.destroyUser(id)) {
 			res.setStatus(201);
 		} else {
 			res.setStatus(400);
@@ -84,7 +60,7 @@ public class UserController {
 	
 	@PutMapping("user/{id}")
 	public User update(HttpServletResponse res, HttpServletRequest req, @PathVariable int id, Principal principal, @RequestBody User user) {
-		user = userService.updateUser(principal.getName(), id, user );
+		user = userService.updateUser(id, user );
 		if(user == null) {
 			res.setStatus(400);
 		}
@@ -99,7 +75,7 @@ public class UserController {
 	
 	@GetMapping("user/{id}")
 	public User Show(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
-		User user = userService.showUser(principal.getName(), id);
+		User user = userService.showUser(id);
 		if(user == null) {
 			res.setStatus(404);
 		}

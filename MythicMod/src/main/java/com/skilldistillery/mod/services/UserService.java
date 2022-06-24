@@ -8,12 +8,12 @@ public interface UserService {
 	
 //	--------------------------new------------------------------------------
 	
-	 public User showUser(String username, int tid);
+	 public User showUser(int id);
 
 	 public User createUser(User user);
 
-	 public User updateUser(String username, int tid, User user);
+	 public User updateUser(int id, User user);
 
-	 public boolean destroyUser(String username, int tid);
+	 public boolean destroyUser(int id);
 
 }
