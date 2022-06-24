@@ -14,9 +14,9 @@ public interface GameService {
 
 	public List<Game> gameIndex();
 
-	public Game createGame(Game game);
+	public Game createGame( Game game);
 
-	public Game updateGame(String gameName, int gameId, Game game);
+	public Game updateGame(int gameId, Game game);
 
 	public boolean destroyGame(int gameId);
 
