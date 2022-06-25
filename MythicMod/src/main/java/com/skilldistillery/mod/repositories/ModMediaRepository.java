@@ -12,5 +12,6 @@ public interface ModMediaRepository extends JpaRepository<ModMedia, Integer> {
 	
 	ModMedia findByIdAndUser_Username(int id, String username);
 	
+	
 
 }

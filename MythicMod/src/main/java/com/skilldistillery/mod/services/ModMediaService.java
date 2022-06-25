@@ -6,15 +6,15 @@ import com.skilldistillery.mod.entities.ModMedia;
 
 public interface ModMediaService {
 
-	public List<ModMedia> index(String username);
+	public List<ModMedia> index();
 	
-	public ModMedia show(String username, int mId);
+	public ModMedia show(int mId);
 	
-	public ModMedia create(String username, ModMedia modMedia);
+	public ModMedia create(ModMedia modMedia);
 	
-	public ModMedia update(String username, int mId, ModMedia modMedia);
+	public ModMedia update(int mId, ModMedia modMedia);
 	
-	public boolean destroy(String username, int mId);
+	public boolean destroy(int mId);
 	
 	
 }
