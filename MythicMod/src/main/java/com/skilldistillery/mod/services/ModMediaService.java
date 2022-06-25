@@ -10,7 +10,7 @@ public interface ModMediaService {
 	
 	public ModMedia show(String username, int mId);
 	
-	public ModMedia create(String username, ModMedia modMedia);
+	public ModMedia create(String username, ModMedia modMedia, int mId);
 	
 	public ModMedia update(String username, int mId, ModMedia modMedia);
 	

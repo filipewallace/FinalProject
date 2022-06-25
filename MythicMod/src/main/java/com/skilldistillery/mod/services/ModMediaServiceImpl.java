@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.skilldistillery.mod.entities.Mod;
 import com.skilldistillery.mod.entities.ModMedia;
 import com.skilldistillery.mod.entities.User;
 import com.skilldistillery.mod.repositories.ModMediaRepository;
+import com.skilldistillery.mod.repositories.ModRepository;
 import com.skilldistillery.mod.repositories.UserRepository;
 
 public class ModMediaServiceImpl implements ModMediaService {
@@ -16,6 +18,8 @@ public class ModMediaServiceImpl implements ModMediaService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private ModRepository moRepo;
 	
 	
 	@Override
@@ -35,10 +39,12 @@ public class ModMediaServiceImpl implements ModMediaService {
 	}
 
 	@Override
-	public ModMedia create(String username, ModMedia modMedia) {
+	public ModMedia create(String username, ModMedia modMedia, int mId) {
 		User user = userRepo.findByUsername(username);
-		if(user != null) {
+		Mod mod = moRepo.queryById(mId);
+		if(user != null && mod != null) {
 			modMedia.setUser(user);
+			modMedia.setMod(mod);
 			return modRepo.saveAndFlush(modMedia);
 		}
 		
@@ -53,6 +59,7 @@ public class ModMediaServiceImpl implements ModMediaService {
 			managed.setMediaUrl(modMedia.getMediaUrl());
 			managed.setMod(modMedia.getMod());
 			managed.setUser(modMedia.getUser());
+			managed.setMod(modMedia.getMod());
 			modRepo.saveAndFlush(managed);
 			return managed;
 		}

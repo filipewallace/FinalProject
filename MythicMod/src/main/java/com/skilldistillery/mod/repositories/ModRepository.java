@@ -9,5 +9,7 @@ public interface ModRepository extends JpaRepository<Mod, Integer> {
 	Mod findByTitle(String modTitle);
 	
 	Mod findByTitleAndId(String modTitle, int modId);
+	
+	Mod queryById(int id);
 
 }
