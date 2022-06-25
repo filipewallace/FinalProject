@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.skilldistillery.mod.entities.Mod;
 import com.skilldistillery.mod.entities.ModMedia;
 
 public interface ModMediaRepository extends JpaRepository<ModMedia, Integer> {

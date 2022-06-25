@@ -1,7 +1,6 @@
 package com.skilldistillery.mod.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.skilldistillery.mod.entities.ModMedia;
 

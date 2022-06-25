@@ -6,12 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.mod.entities.Mod;
 import com.skilldistillery.mod.entities.ModMedia;
-import com.skilldistillery.mod.entities.User;
 import com.skilldistillery.mod.repositories.ModMediaRepository;
-import com.skilldistillery.mod.repositories.ModRepository;
-import com.skilldistillery.mod.repositories.UserRepository;
 
 @Service
 public class ModMediaServiceImpl implements ModMediaService {
@@ -19,10 +15,7 @@ public class ModMediaServiceImpl implements ModMediaService {
 	@Autowired
 	private ModMediaRepository modRepo;
 	
-	@Autowired
-	private UserRepository userRepo;
-	@Autowired
-	private ModRepository moRepo;
+	
 	
 	
 	@Override
