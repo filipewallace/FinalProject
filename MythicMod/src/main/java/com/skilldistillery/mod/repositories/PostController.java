@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,5 +78,38 @@ public class PostController {
 			post = null;
 		}
 		return post;
+	}
+	
+	@PutMapping("post/{id}")
+	public Post updatePostInfo(@PathVariable int id, @RequestBody Post post, HttpServletRequest req,
+			HttpServletResponse res, Principal principal) {
+		try {
+			post = postServ.updatePost(id, post);
+			if (post == null) {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			post = null;
+		}
+		return post;
+
+	}
+	
+	@DeleteMapping("post/{id}")
+	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
+
+		try {
+			if (postServ.destroyPost(id)) {
+				res.setStatus(204);
+			} else {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+
 	}
 }
