@@ -103,7 +103,8 @@ public class UserController {
 		}
 		return user;
 	}
-
+	
+	//COMMENT TEST
 	@GetMapping("user")
 	public List<User> userIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		try {
