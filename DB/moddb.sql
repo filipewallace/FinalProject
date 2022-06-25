@@ -210,7 +210,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `post` ;
 
 CREATE TABLE IF NOT EXISTS `post` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(200) NULL,
   `comment` TEXT NULL,
   `mod_id` INT NOT NULL,
@@ -408,6 +408,10 @@ COMMIT;
 START TRANSACTION;
 USE `moddb`;
 INSERT INTO `developer` (`id`, `name`, `img_url`, `web_link`) VALUES (1, 'Pony', 'test', 'test');
+INSERT INTO `developer` (`id`, `name`, `img_url`, `web_link`) VALUES (2, 'DevSoft', 'https://staticdelivery.nexusmods.com/mods/641/images/thumbnails/102/102-1566084502-409746048.gif', NULL);
+INSERT INTO `developer` (`id`, `name`, `img_url`, `web_link`) VALUES (3, 'FromSoft', 'https://staticdelivery.nexusmods.com/mods/1151/images/thumbnails/3731-0-1448877308.jpg', NULL);
+INSERT INTO `developer` (`id`, `name`, `img_url`, `web_link`) VALUES (4, 'PotatoDev', 'https://staticdelivery.nexusmods.com/mods/130/images/thumbnails/76021/76021-1649186147-252485024.jpeg', NULL);
+INSERT INTO `developer` (`id`, `name`, `img_url`, `web_link`) VALUES (5, 'Software Developer Company', 'https://staticdelivery.nexusmods.com/mods/2600/images/thumbnails/772/772-1622038515-1913732547.png', NULL);
 
 COMMIT;
 
@@ -418,6 +422,10 @@ COMMIT;
 START TRANSACTION;
 USE `moddb`;
 INSERT INTO `publisher` (`id`, `name`, `img_url`, `web_link`) VALUES (1, 'Cupcake', 'test', 'test');
+INSERT INTO `publisher` (`id`, `name`, `img_url`, `web_link`) VALUES (2, 'Game Publisher Company', 'https://staticdelivery.nexusmods.com/mods/1704/images/thumbnails/5260/5260-1623835686-1516122282.png', NULL);
+INSERT INTO `publisher` (`id`, `name`, `img_url`, `web_link`) VALUES (3, 'JetGames Publishing', 'https://staticdelivery.nexusmods.com/mods/3551/images/thumbnails/114/114-1613479112-941408801.png', NULL);
+INSERT INTO `publisher` (`id`, `name`, `img_url`, `web_link`) VALUES (4, 'GamePlay Publishers', 'https://staticdelivery.nexusmods.com/mods/1894/images/thumbnails/234-0-1497041307.jpg', NULL);
+INSERT INTO `publisher` (`id`, `name`, `img_url`, `web_link`) VALUES (5, 'Potato Co', 'https://staticdelivery.nexusmods.com/mods/120/images/thumbnails/12025-1-1270390193.jpg', NULL);
 
 COMMIT;
 
