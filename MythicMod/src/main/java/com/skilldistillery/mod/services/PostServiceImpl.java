@@ -42,14 +42,30 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public Post updatePost(int postId, Post post) {
-		// TODO Auto-generated method stub
+		Post updater = getPostById(postId);
+		
+		if(updater != null) {
+			updater.setComment(post.getComment());
+			updater.setCommentDate(post.getCommentDate());
+			updater.setInReplyTo(post.getInReplyTo());
+			updater.setMod(post.getMod());
+			updater.setReplies(post.getReplies());
+			updater.setTitle(post.getTitle());
+			updater.setUser(post.getUser());
+			
+			post = postRepo.saveAndFlush(updater);
+			
+			return post;
+		}
+		
 		return null;
 	}
 
 	@Override
 	public boolean destroyPost(int postId) {
-		// TODO Auto-generated method stub
-		return false;
+		postRepo.deleteById(postId);
+		boolean deleted = !postRepo.existsById(postId);
+		return deleted;
 	}
 
 	
