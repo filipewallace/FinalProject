@@ -3,10 +3,12 @@ package com.skilldistillery.mod.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mod.entities.Publisher;
 import com.skilldistillery.mod.repositories.PublisherRepository;
 
+@Service
 public class PublisherServiceImpl implements PublisherService {
 	
 	@Autowired

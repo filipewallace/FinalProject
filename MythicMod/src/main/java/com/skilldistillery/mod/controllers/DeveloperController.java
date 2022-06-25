@@ -17,37 +17,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mod.entities.Game;
-import com.skilldistillery.mod.services.GameService;
+import com.skilldistillery.mod.entities.Developer;
+import com.skilldistillery.mod.services.DeveloperService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4200" })
-public class GameController {
+public class DeveloperController {
 
 	@Autowired
-	private GameService gameServ;
+	private DeveloperService devServ;
 
-	@GetMapping("/games/{id}")
-	public Game findGameById(@PathVariable Integer id, HttpServletResponse res) {
+	@GetMapping("/developers/{id}")
+	public Developer findDeveloperById(@PathVariable Integer id, HttpServletResponse res) {
 
-		Game game = gameServ.getGameById(id);
-		if (game == null) {
+		Developer developer = devServ.getDeveloperById(id);
+		if (developer == null) {
 
 			res.setStatus(404);
 		}
 
-		return game;
+		return developer;
 	}
 
-	@GetMapping("games")
-	public List<Game> gameIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+	@GetMapping("developers")
+	public List<Developer> developerIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		try {
-			List<Game> games = gameServ.gameIndex();
-			if (games == null) {
+			List<Developer> developers = devServ.developerIndex();
+			if (developers == null) {
 				res.setStatus(404);
 			}
-			return games;
+			return developers;
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
@@ -56,52 +56,52 @@ public class GameController {
 
 	}
 
-	@PostMapping("games")
-	public Game createNewGame(HttpServletRequest req, HttpServletResponse res, @RequestBody Game game,
-			Principal principal) {
+	@PostMapping("developers")
+	public Developer createNewDeveloper(HttpServletRequest req, HttpServletResponse res,
+			@RequestBody Developer developer, Principal principal) {
 
 		try {
-			game = gameServ.createGame(game);
-			if (game == null) {
+			developer = devServ.createDeveloper(developer);
+			if (developer == null) {
 
 				res.setStatus(404);
 			} else {
 				res.setStatus(201);
 				StringBuffer url = req.getRequestURL();
-				url.append("/").append(game.getId());
+				url.append("/").append(developer.getId());
 				res.setHeader("Location", url.toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Invalid Todo JSON");
 			res.setStatus(400);
-			game = null;
+			developer = null;
 		}
-		return game;
+		return developer;
 	}
 
-	@PutMapping("games/{id}")
-	public Game updateGameInfo(@PathVariable int id, @RequestBody Game game, HttpServletRequest req,
+	@PutMapping("developers/{id}")
+	public Developer updateDeveloperInfo(@PathVariable int id, @RequestBody Developer dev, HttpServletRequest req,
 			HttpServletResponse res, Principal principal) {
 		try {
-			game = gameServ.updateGame(id, game);
-			if (game == null) {
+			dev = devServ.updateDeveloper(id, dev);
+			if (dev == null) {
 				res.setStatus(404);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
-			game = null;
+			dev = null;
 		}
-		return game;
+		return dev;
 
 	}
 
-	@DeleteMapping("games/{id}")
+	@DeleteMapping("developers/{id}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
 
 		try {
-			if (gameServ.destroyGame(id)) {
+			if (devServ.destroyDeveloper(id)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
