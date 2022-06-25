@@ -47,7 +47,7 @@ private static EntityManagerFactory emf;
 	@Test	
 	void test_ModMedia_entity_mapping() {
 		assertNotNull(modMedia);
-		assertEquals("test", modMedia.getDescription());
+		assertEquals("Schoolhouse base mod.", modMedia.getDescription());
 	}
 	
 	@Test

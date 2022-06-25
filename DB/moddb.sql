@@ -567,7 +567,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `moddb`;
-INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (1, 'https://staticdelivery.nexusmods.com/mods/130/images/thumbnails/37513-1-1298749187.jpg', 'Schoolhouse base mod.', 1, 2);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (1, 'https://staticdelivery.nexusmods.com/mods/130/images/thumbnails/37513-1-1298749187.jpg', 'Schoolhouse base mod.', 1, 1);
 INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (2, 'https://staticdelivery.nexusmods.com/mods/101/images/thumbnails/51884/51884-1649095311-1000563482.jpeg', 'A dear dear.', 2, 2);
 INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (3, 'https://staticdelivery.nexusmods.com/mods/4265/images/thumbnails/1/1-1642489075-1313903333.png', 'Nice reshade.', 3, 3);
 INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (4, 'https://staticdelivery.nexusmods.com/mods/4578/images/thumbnails/22/22-1655746608-709278357.png', 'Nice boots and red hat.', 4, 4);
