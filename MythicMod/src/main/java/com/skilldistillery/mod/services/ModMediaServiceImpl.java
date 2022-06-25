@@ -3,12 +3,14 @@ package com.skilldistillery.mod.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mod.entities.ModMedia;
 import com.skilldistillery.mod.entities.User;
 import com.skilldistillery.mod.repositories.ModMediaRepository;
 import com.skilldistillery.mod.repositories.UserRepository;
 
+@Service
 public class ModMediaServiceImpl implements ModMediaService {
 	
 	@Autowired
