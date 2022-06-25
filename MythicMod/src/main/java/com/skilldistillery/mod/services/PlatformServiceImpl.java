@@ -3,10 +3,12 @@ package com.skilldistillery.mod.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mod.entities.Platform;
 import com.skilldistillery.mod.repositories.PlatformRepository;
 
+@Service
 public class PlatformServiceImpl implements PlatformService {
 	
 	@Autowired

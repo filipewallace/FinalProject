@@ -3,12 +3,13 @@ package com.skilldistillery.mod.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.skilldistillery.mod.entities.Category;
 import com.skilldistillery.mod.entities.EsrbRating;
 import com.skilldistillery.mod.repositories.EsrbRespository;
 
 
+@Service
 public class EsrbRatingServiceImpl implements EsrbRatingService {
 	
 	@Autowired

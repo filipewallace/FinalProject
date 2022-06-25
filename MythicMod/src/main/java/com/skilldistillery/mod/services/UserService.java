@@ -1,5 +1,7 @@
 package com.skilldistillery.mod.services;
 
+import java.util.List;
+
 import com.skilldistillery.mod.entities.User;
 
 public interface UserService {
@@ -15,5 +17,7 @@ public interface UserService {
 	 public User updateUser(int id, User user);
 
 	 public boolean destroyUser(int id);
+
+	 public List<User> userIndex();
 
 }

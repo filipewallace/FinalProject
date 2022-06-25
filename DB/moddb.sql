@@ -567,7 +567,26 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `moddb`;
-INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (1, 'test', 'test', 1, 1);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (1, 'https://staticdelivery.nexusmods.com/mods/130/images/thumbnails/37513-1-1298749187.jpg', 'Schoolhouse base mod.', 1, 1);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (2, 'https://staticdelivery.nexusmods.com/mods/101/images/thumbnails/51884/51884-1649095311-1000563482.jpeg', 'A dear dear.', 2, 2);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (3, 'https://staticdelivery.nexusmods.com/mods/4265/images/thumbnails/1/1-1642489075-1313903333.png', 'Nice reshade.', 3, 3);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (4, 'https://staticdelivery.nexusmods.com/mods/4578/images/thumbnails/22/22-1655746608-709278357.png', 'Nice boots and red hat.', 4, 4);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (5, 'https://staticdelivery.nexusmods.com/mods/1303/images/thumbnails/5448/5448-1582354981-1635338681.png', 'Improved center.', 5, 5);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (6, 'https://staticdelivery.nexusmods.com/mods/101/images/thumbnails/7552-1-1251555907.jpg', 'Friendly places within the borders of the kingdom.', 6, 6);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (7, 'https://staticdelivery.nexusmods.com/mods/4103/images/thumbnails/111/111-1645219521-166617932.jpeg', 'Take a shortcut over the mountains.', 7, 7);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (8, 'https://staticdelivery.nexusmods.com/mods/120/images/thumbnails/24784/24784-1631421245-1152861217.jpeg', 'Add a nice sunset to the final scene.', 8, 8);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (9, 'https://staticdelivery.nexusmods.com/mods/1704/images/thumbnails/3805/3805-1545330884-2115047679.jpeg', 'Build a sweet gingerbread house.', 9, 8);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (10, 'https://staticdelivery.nexusmods.com/mods/110/images/thumbnails/68221-0-1437999415.jpg', 'Use a horse and carriage to get there faster.', 10, 8);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (11, 'https://staticdelivery.nexusmods.com/mods/1151/images/thumbnails/10157-0-1457727003.jpg', 'Lets you travel to settlements on a cool motorcycle.', 11, 2);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (12, 'https://staticdelivery.nexusmods.com/mods/1151/images/thumbnails/21184-0-1484039461.jpg', 'Change your car color to pink.', 12, 3);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (13, 'https://staticdelivery.nexusmods.com/mods/1704/images/thumbnails/8778-7-1488919331.jpg', 'Add lightning effects.', 13, 4);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (14, 'https://staticdelivery.nexusmods.com/mods/1704/images/thumbnails/50755/50755-1622706861-596411500.jpeg', 'Take a nice stroll through the meadow.', 14, 5);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (15, 'https://staticdelivery.nexusmods.com/mods/1704/images/thumbnails/8398-0-1500580058.jpg', 'Add a beautiful sunrise and weather changes.', 15, 6);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (16, 'https://staticdelivery.nexusmods.com/mods/952/images/thumbnails/3902/3902-1568016155-701733144.jpeg', 'Immersive lighting reshade.', 16, 2);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (17, 'https://staticdelivery.nexusmods.com/mods/1151/images/thumbnails/7258-0-1451465814.jpg', 'Bubble gum retexture.', 17, 3);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (18, 'https://staticdelivery.nexusmods.com/mods/2777/images/thumbnails/1107/1107-1618973286-524665390.jpeg', 'Add a yellow jet.', 18, 4);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (19, 'https://staticdelivery.nexusmods.com/mods/1704/images/thumbnails/51188-1-1392645526.jpg', 'Add beautiful snow scenes.', 19, 4);
+INSERT INTO `mod_media` (`id`, `media_url`, `description`, `mod_id`, `user_id`) VALUES (20, 'https://staticdelivery.nexusmods.com/mods/110/images/thumbnails/8328-1-1328813289.jpg', 'More snow.', 20, 3);
 
 COMMIT;
 
