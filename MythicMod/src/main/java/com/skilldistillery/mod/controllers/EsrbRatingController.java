@@ -17,37 +17,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mod.entities.Game;
-import com.skilldistillery.mod.services.GameService;
+import com.skilldistillery.mod.entities.EsrbRating;
+import com.skilldistillery.mod.services.EsrbRatingService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4200" })
-public class GameController {
-
+public class EsrbRatingController {
+	
 	@Autowired
-	private GameService gameServ;
+	private EsrbRatingService esrbServ;
 
-	@GetMapping("/games/{id}")
-	public Game findGameById(@PathVariable Integer id, HttpServletResponse res) {
+	@GetMapping("/rating/{id}")
+	public EsrbRating findEsrbRatingById(@PathVariable Integer id, HttpServletResponse res) {
 
-		Game game = gameServ.getGameById(id);
-		if (game == null) {
+		EsrbRating esrbRating = esrbServ.show(id);
+		if (esrbRating == null) {
 
 			res.setStatus(404);
 		}
 
-		return game;
+		return esrbRating;
 	}
 
-	@GetMapping("games")
-	public List<Game> gameIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+	@GetMapping("rating")
+	public List<EsrbRating> ratingIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+	
+		System.out.println("IN ESRB RATING INDEX CONTROLLER");
 		try {
-			List<Game> games = gameServ.gameIndex();
-			if (games == null) {
+			List<EsrbRating> esrbRating = esrbServ.index();
+			if (esrbRating == null) {
 				res.setStatus(404);
 			}
-			return games;
+			return esrbRating;
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
@@ -56,52 +58,52 @@ public class GameController {
 
 	}
 
-	@PostMapping("games")
-	public Game createNewGame(HttpServletRequest req, HttpServletResponse res, @RequestBody Game game,
-			Principal principal) {
+	@PostMapping("rating")
+	public EsrbRating createNewRating(HttpServletRequest req, HttpServletResponse res,
+			@RequestBody EsrbRating esrbRating, Principal principal) {
 
 		try {
-			game = gameServ.createGame(game);
-			if (game == null) {
+			esrbRating = esrbServ.create(esrbRating);
+			if (esrbRating == null) {
 
 				res.setStatus(404);
 			} else {
 				res.setStatus(201);
 				StringBuffer url = req.getRequestURL();
-				url.append("/").append(game.getId());
+				url.append("/").append(esrbRating.getId());
 				res.setHeader("Location", url.toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Invalid Game JSON");
+			System.err.println("Invalid ESRB Rating JSON");
 			res.setStatus(400);
-			game = null;
+			esrbRating = null;
 		}
-		return game;
+		return esrbRating;
 	}
 
-	@PutMapping("games/{id}")
-	public Game updateGameInfo(@PathVariable int id, @RequestBody Game game, HttpServletRequest req,
+	@PutMapping("rating/{id}")
+	public EsrbRating updateRating(@PathVariable int id, @RequestBody EsrbRating esrbRating, HttpServletRequest req,
 			HttpServletResponse res, Principal principal) {
 		try {
-			game = gameServ.updateGame(id, game);
-			if (game == null) {
+			esrbRating = esrbServ.update(id, esrbRating);
+			if (esrbRating == null) {
 				res.setStatus(404);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
-			game = null;
+			esrbRating = null;
 		}
-		return game;
+		return esrbRating;
 
 	}
 
-	@DeleteMapping("games/{id}")
+	@DeleteMapping("rating/{id}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
 
 		try {
-			if (gameServ.destroyGame(id)) {
+			if (esrbServ.destroy(id)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
@@ -112,5 +114,4 @@ public class GameController {
 		}
 
 	}
-
 }
