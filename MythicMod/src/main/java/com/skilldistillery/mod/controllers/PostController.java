@@ -1,4 +1,4 @@
-package com.skilldistillery.mod.repositories;
+package com.skilldistillery.mod.controllers;
 
 import java.security.Principal;
 import java.util.List;
