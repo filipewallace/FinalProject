@@ -73,7 +73,7 @@ public class ModController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Invalid Todo JSON");
+			System.err.println("Invalid mod JSON");
 			res.setStatus(400);
 			mod = null;
 		}
