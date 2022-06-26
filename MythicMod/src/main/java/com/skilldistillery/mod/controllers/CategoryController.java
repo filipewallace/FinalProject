@@ -17,36 +17,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mod.entities.Publisher;
-import com.skilldistillery.mod.services.PublisherService;
+import com.skilldistillery.mod.entities.Category;
+import com.skilldistillery.mod.services.CategoryService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4200" })
-public class PublisherController {
-	
-	@Autowired
-	private PublisherService pubServ;
-	
-	@GetMapping("publisher/{id}")
-	public Publisher findPubById(@PathVariable Integer id, HttpServletResponse res) {
+public class CategoryController {
 
-		Publisher p = pubServ.show(id);
-		if (p == null) {
+	@Autowired
+	private CategoryService catServ;
+
+	@GetMapping("/category/{id}")
+	public Category findCategoryById(@PathVariable Integer id, HttpServletResponse res) {
+
+		Category category = catServ.getCategoryById(id);
+		if (category == null) {
 
 			res.setStatus(404);
 		}
-		return p;
+
+		return category;
 	}
-	
-	@GetMapping("publisher")
-	public List<Publisher> pubIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+
+	@GetMapping("category")
+	public List<Category> categoryIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		try {
-			List<Publisher> publishers = pubServ.index();
-			if (publishers == null) {
+			List<Category> categories = catServ.categoryIndex();
+			if (categories == null) {
 				res.setStatus(404);
 			}
-			return publishers;
+			return categories;
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
@@ -54,53 +55,54 @@ public class PublisherController {
 		}
 
 	}
-	
-	@PostMapping("publisher")
-	public Publisher createPublisher(HttpServletRequest req, HttpServletResponse res, @RequestBody Publisher publisher,
+
+	@PostMapping("category")
+	public Category createNewCategory(HttpServletRequest req, HttpServletResponse res, @RequestBody Category category,
 			Principal principal) {
 
 		try {
-			publisher = pubServ.create(publisher);
-			if (publisher== null) {
+			category = catServ.createCategory(category);
+			if (category == null) {
 
 				res.setStatus(404);
 			} else {
 				res.setStatus(201);
 				StringBuffer url = req.getRequestURL();
-				url.append("/").append(publisher.getId());
+				url.append("/").append(category.getId());
 				res.setHeader("Location", url.toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Invalid Todo JSON");
 			res.setStatus(400);
-			publisher = null;
+			category = null;
 		}
-		return publisher;
+		return category;
 	}
-	
-	@PutMapping("publisher/{id}")
-	public Publisher updatePubInfo(@PathVariable int id, @RequestBody Publisher publisher, HttpServletRequest req,
-			HttpServletResponse res, Principal principal) {
+
+	@PutMapping("category/{id}")
+	public Category updateCategoryInfo(@PathVariable int id, @RequestBody Category category,
+			HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		try {
-			publisher = pubServ.update(id, publisher);
-			if (publisher == null) {
+			category = catServ.updateCategory(id, category);
+			if (category == null) {
 				res.setStatus(404);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
-			publisher = null;
+			category = null;
 		}
-		return publisher;
+		return category;
 
 	}
-	
-	@DeleteMapping("publisher/{id}")
-	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
+
+	@DeleteMapping("category/{id}")
+	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id,
+			Principal principal) {
 
 		try {
-			if (pubServ.destroy(id)) {
+			if (catServ.destroyCategory(id)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
@@ -111,6 +113,5 @@ public class PublisherController {
 		}
 
 	}
-	
 
 }

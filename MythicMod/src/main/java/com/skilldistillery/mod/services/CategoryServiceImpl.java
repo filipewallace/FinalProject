@@ -1,6 +1,7 @@
 package com.skilldistillery.mod.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,54 +11,62 @@ import com.skilldistillery.mod.repositories.CategoryRepository;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-	
+
 	@Autowired
 	private CategoryRepository catRepo;
 
 	@Override
-	public List<Category> index() {
-		
-		return catRepo.findAll();
-	}
+	public Category getCategoryById(int categoryId) {
 
-	@Override
-	public Category show(int id) {
-		
-		return catRepo.findById(id);
-	}
-
-	@Override
-	public Category create(Category category) {
-		catRepo.saveAndFlush(category);
-		
-		
-		
-		
+		Optional<Category> categoryOpt = catRepo.findById(categoryId);
+		Category category = null;
+		if (categoryOpt.isPresent()) {
+			category = categoryOpt.get();
+		}
 		return category;
 	}
 
 	@Override
-	public Category update(int id, Category category) {
-		// TODO Auto-generated method stub
-		Category managed = catRepo.findById(id);
-		if(managed != null) {
-			managed.setGenre(category.getGenre());
-			managed.setId(id);
-			
-			catRepo.saveAndFlush(managed);
-			return managed;
+	public Category showCategory(String categoryGenre, int categoryId) {
+
+		return catRepo.findByGenreAndId(categoryGenre, categoryId);
+
+	}
+
+	@Override
+	public List<Category> categoryIndex() {
+		return catRepo.findAll();
+	}
+
+	@Override
+	public Category createCategory(Category category) {
+
+		return catRepo.saveAndFlush(category);
+	}
+
+	@Override
+	public Category updateCategory(int categoryId, Category category) {
+
+		Category updater = getCategoryById(categoryId);
+
+		if (updater != null) {
+
+			updater.setGenre(category.getGenre());
+
+			category = catRepo.saveAndFlush(updater);
+			return category;
+
 		}
+
 		return null;
 	}
 
 	@Override
-	public boolean destroy(int id) {
-		// TODO Auto-generated method stub
-		if(catRepo.findById(id) != null) {
-			catRepo.deleteById(id);
-			return true;
-		}
-		return false;
-	}
+	public boolean destroyCategory(int categoryId) {
 
+		catRepo.deleteById(categoryId);
+		boolean deleted = !catRepo.existsById(categoryId);
+
+		return deleted;
+	}
 }
