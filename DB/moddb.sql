@@ -245,13 +245,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mod_order` ;
 
 CREATE TABLE IF NOT EXISTS `mod_order` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `cc_owner_name` VARCHAR(200) NULL,
-  `cc_number` VARCHAR(45) NULL,
-  `cc_exp_date` DATETIME NULL,
-  `cvc` VARCHAR(45) NULL,
   `billing_address` TEXT NULL,
-  `user_id` INT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_order_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_order_user1`
@@ -505,7 +502,30 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `moddb`;
-INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (5, 'Awesome!', 1, 1, NULL);
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (5, 'Awesome!', 2, 2, '2020-01-30');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (4, 'I really like this mod.', 2, 3, '2021-02-27');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (3, 'Just okay. Nothing special.', 3, 4, '2019-03-28');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (2, 'Not that great.', 4, 5, '2020-04-27');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (1, 'Horrible.', 5, 6, '2022-05-26');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (1, 'I don\'t like it.', 2, 1, '2020-06-27');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (2, 'Not worth your time.', 4, 2, '2021-07-28');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (3, 'Average at best.', 6, 3, '2020-08-29');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (4, 'Pretty good, but could be better.', 8, 4, '2021-09-25');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (5, 'Best ever.', 10, 5, '2022-10-24');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (5, 'I love this mod.', 3, 6, '2021-11-23');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (5, 'Super Duper Mod!', 4, 7, '2022-12-22');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (4, 'I like the graphics.', 2, 8, '2021-06-21');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (3, 'Kind of glitchy.', 3, 9, '2020-05-20');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (2, 'I wouldn\'t download this one.', 4, 10, '2021-03-19');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (1, 'Very, very bad!', 5, 11, '2022-02-18');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (5, 'Just the mod I was looking for!', 6, 12, '2021-01-17');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (4, 'This mod has real potential.', 7, 13, '2020-03-16');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (3, 'Just a really average mod.', 8, 15, '2022-04-15');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (2, 'I don\'t want to complain, but this mod is not good at all.', 9, 16, '2021-06-14');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (1, 'Why? I don\'t see the point of this mod.', 10, 17, '2019-06-13');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (5, 'Marvelous!', 3, 18, '2020-06-12');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (4, 'Definitely a good mod.', 4, 19, '2021-06-11');
+INSERT INTO `review` (`score`, `opinion`, `user_id`, `mod_id`, `review_date`) VALUES (5, 'Fantastic mod. I hope the developers will work on others like this one.', 5, 20, '2022-06-10');
 
 COMMIT;
 
@@ -535,7 +555,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `moddb`;
-INSERT INTO `mod_order` (`id`, `cc_owner_name`, `cc_number`, `cc_exp_date`, `cvc`, `billing_address`, `user_id`) VALUES (1, 'Joe Doe', '1234567891012', '2022-02-03', 'Joe Doe', '1234 Elm Lane', NULL);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `billing_address`, `user_id`) VALUES (1, 'Joe Doe', '1234 Elm Lane, Mayberry, NC 12345', 1);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `billing_address`, `user_id`) VALUES (2, 'Shelly Bernstein', '8 Main St, Miami, FL, 98765', 10);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `billing_address`, `user_id`) VALUES (3, 'Sally Groffner', '18 N Broad St, Uptown, NY 33345', 9);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `billing_address`, `user_id`) VALUES (4, 'Mary Polinsky', '123 North St., Palm Beach, FL 33012', 8);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `billing_address`, `user_id`) VALUES (5, 'Allen Rodriquez', '456 South St., Jacksonville, FL 33067', 7);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `billing_address`, `user_id`) VALUES (6, 'Jerry Jones', '657 Hollywood Blvd, Hollywood, FL 12345 ', 6);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `billing_address`, `user_id`) VALUES (7, 'Rob Thompson', '342 West St., Plano, TX 77574', 5);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `billing_address`, `user_id`) VALUES (8, 'Ellen Wells', '2343 Beach St., Tampa Bay, FL 23434', 4);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `billing_address`, `user_id`) VALUES (9, 'Tom Smith', '5523 East Beltline, Lansing, MI 54356', 3);
+INSERT INTO `mod_order` (`id`, `cc_owner_name`, `billing_address`, `user_id`) VALUES (10, 'Jane Doe', '8 Lake Rd, Boston, MA, 23454', 2);
 
 COMMIT;
 
