@@ -17,36 +17,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mod.entities.Publisher;
-import com.skilldistillery.mod.services.PublisherService;
+import com.skilldistillery.mod.entities.Platform;
+import com.skilldistillery.mod.services.PlatformService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4200" })
-public class PublisherController {
-	
-	@Autowired
-	private PublisherService pubServ;
-	
-	@GetMapping("publisher/{id}")
-	public Publisher findPubById(@PathVariable Integer id, HttpServletResponse res) {
+public class PlatformController {
 
-		Publisher p = pubServ.show(id);
-		if (p == null) {
+	@Autowired
+	private PlatformService platServ;
+
+	@GetMapping("/platform/{id}")
+	public Platform findPlatformById(@PathVariable Integer id, HttpServletResponse res) {
+
+		Platform platform = platServ.show(id);
+		if (platform == null) {
 
 			res.setStatus(404);
 		}
-		return p;
+
+		return platform;
 	}
-	
-	@GetMapping("publisher")
-	public List<Publisher> pubIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+
+	@GetMapping("platform")
+	public List<Platform> findAllPlatforms(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		try {
-			List<Publisher> publishers = pubServ.index();
-			if (publishers == null) {
+			List<Platform> platforms = platServ.index();
+			if (platforms == null) {
 				res.setStatus(404);
 			}
-			return publishers;
+			return platforms;
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
@@ -55,52 +56,54 @@ public class PublisherController {
 
 	}
 	
-	@PostMapping("publisher")
-	public Publisher createPublisher(HttpServletRequest req, HttpServletResponse res, @RequestBody Publisher publisher,
+	@PostMapping("platform")
+	public Platform createPlatform(HttpServletRequest req, HttpServletResponse res, @RequestBody Platform platform,
 			Principal principal) {
 
 		try {
-			publisher = pubServ.create(publisher);
-			if (publisher== null) {
+			platform = platServ.create(platform);
+			if (platform == null) {
 
 				res.setStatus(404);
 			} else {
 				res.setStatus(201);
 				StringBuffer url = req.getRequestURL();
-				url.append("/").append(publisher.getId());
+				url.append("/").append(platform.getId());
 				res.setHeader("Location", url.toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Invalid Todo JSON");
+			System.err.println("Invalid Platform JSON");
 			res.setStatus(400);
-			publisher = null;
+			platform = null;
 		}
-		return publisher;
+		return platform;
+	
 	}
 	
-	@PutMapping("publisher/{id}")
-	public Publisher updatePubInfo(@PathVariable int id, @RequestBody Publisher publisher, HttpServletRequest req,
+
+	@PutMapping("platform/{id}")
+	public Platform updatePlatform(@PathVariable int id, @RequestBody Platform platform, HttpServletRequest req,
 			HttpServletResponse res, Principal principal) {
 		try {
-			publisher = pubServ.update(id, publisher);
-			if (publisher == null) {
+			platform = platServ.update(id, platform);
+			if (platform == null) {
 				res.setStatus(404);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
-			publisher = null;
+			platform = null;
 		}
-		return publisher;
+		return platform;
 
 	}
 	
-	@DeleteMapping("publisher/{id}")
+	@DeleteMapping("platform/{id}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
 
 		try {
-			if (pubServ.destroy(id)) {
+			if (platServ.destroy(id)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
@@ -111,6 +114,6 @@ public class PublisherController {
 		}
 
 	}
-	
+
 
 }

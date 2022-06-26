@@ -8,8 +8,6 @@ public interface GameService {
 
 	public Game getGameById(int gameId);
 
-//	--------------------------new------------------------------------------
-
 	public Game showGame(String gameName, int gameId);
 
 	public List<Game> gameIndex();

@@ -17,36 +17,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mod.entities.Publisher;
-import com.skilldistillery.mod.services.PublisherService;
+import com.skilldistillery.mod.entities.EsrbRating;
+import com.skilldistillery.mod.services.EsrbRatingService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4200" })
-public class PublisherController {
+public class EsrbRatingController {
 	
 	@Autowired
-	private PublisherService pubServ;
-	
-	@GetMapping("publisher/{id}")
-	public Publisher findPubById(@PathVariable Integer id, HttpServletResponse res) {
+	private EsrbRatingService esrbServ;
 
-		Publisher p = pubServ.show(id);
-		if (p == null) {
+	@GetMapping("/rating/{id}")
+	public EsrbRating findEsrbRatingById(@PathVariable Integer id, HttpServletResponse res) {
+
+		EsrbRating esrbRating = esrbServ.show(id);
+		if (esrbRating == null) {
 
 			res.setStatus(404);
 		}
-		return p;
+
+		return esrbRating;
 	}
+
+	@GetMapping("rating")
+	public List<EsrbRating> ratingIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 	
-	@GetMapping("publisher")
-	public List<Publisher> pubIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		System.out.println("IN ESRB RATING INDEX CONTROLLER");
 		try {
-			List<Publisher> publishers = pubServ.index();
-			if (publishers == null) {
+			List<EsrbRating> esrbRating = esrbServ.index();
+			if (esrbRating == null) {
 				res.setStatus(404);
 			}
-			return publishers;
+			return esrbRating;
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
@@ -54,53 +57,53 @@ public class PublisherController {
 		}
 
 	}
-	
-	@PostMapping("publisher")
-	public Publisher createPublisher(HttpServletRequest req, HttpServletResponse res, @RequestBody Publisher publisher,
-			Principal principal) {
+
+	@PostMapping("rating")
+	public EsrbRating createNewRating(HttpServletRequest req, HttpServletResponse res,
+			@RequestBody EsrbRating esrbRating, Principal principal) {
 
 		try {
-			publisher = pubServ.create(publisher);
-			if (publisher== null) {
+			esrbRating = esrbServ.create(esrbRating);
+			if (esrbRating == null) {
 
 				res.setStatus(404);
 			} else {
 				res.setStatus(201);
 				StringBuffer url = req.getRequestURL();
-				url.append("/").append(publisher.getId());
+				url.append("/").append(esrbRating.getId());
 				res.setHeader("Location", url.toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Invalid Todo JSON");
+			System.err.println("Invalid ESRB Rating JSON");
 			res.setStatus(400);
-			publisher = null;
+			esrbRating = null;
 		}
-		return publisher;
+		return esrbRating;
 	}
-	
-	@PutMapping("publisher/{id}")
-	public Publisher updatePubInfo(@PathVariable int id, @RequestBody Publisher publisher, HttpServletRequest req,
+
+	@PutMapping("rating/{id}")
+	public EsrbRating updateRating(@PathVariable int id, @RequestBody EsrbRating esrbRating, HttpServletRequest req,
 			HttpServletResponse res, Principal principal) {
 		try {
-			publisher = pubServ.update(id, publisher);
-			if (publisher == null) {
+			esrbRating = esrbServ.update(id, esrbRating);
+			if (esrbRating == null) {
 				res.setStatus(404);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
-			publisher = null;
+			esrbRating = null;
 		}
-		return publisher;
+		return esrbRating;
 
 	}
-	
-	@DeleteMapping("publisher/{id}")
+
+	@DeleteMapping("rating/{id}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
 
 		try {
-			if (pubServ.destroy(id)) {
+			if (esrbServ.destroy(id)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
@@ -111,6 +114,4 @@ public class PublisherController {
 		}
 
 	}
-	
-
 }

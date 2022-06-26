@@ -73,7 +73,7 @@ public class GameController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Invalid Todo JSON");
+			System.err.println("Invalid Game JSON");
 			res.setStatus(400);
 			game = null;
 		}

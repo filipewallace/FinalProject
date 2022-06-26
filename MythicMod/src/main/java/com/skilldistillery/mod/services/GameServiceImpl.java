@@ -35,7 +35,7 @@ public class GameServiceImpl implements GameService {
 	public List<Game> gameIndex() {
 
 		return gameRepo.findAll();
-	}
+	} 
 
 	@Override
 	public Game createGame(Game game) {
@@ -47,7 +47,7 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public Game updateGame(int gameId, Game game) {
 
-		Game updater = getGameById(gameId); 
+		Game updater = getGameById(gameId);
 
 		if (updater != null) {
 
