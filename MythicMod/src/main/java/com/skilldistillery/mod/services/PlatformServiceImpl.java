@@ -1,6 +1,7 @@
 package com.skilldistillery.mod.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,12 +29,15 @@ public class PlatformServiceImpl implements PlatformService {
 
 	@Override
 	public Platform show(int id) {
-		Platform result = platRepo.findById(id);
+		Optional<Platform> platOpt = platRepo.findById(id);
 		
-		if (result == null) {
-			return null;
+		Platform platfrom = null;
+		if (platOpt.isPresent()) {
+			platfrom = platOpt.get();
 		}
-		return result;
+		return platfrom;
+		
+		
 	}
 
 	@Override
@@ -48,8 +52,8 @@ public class PlatformServiceImpl implements PlatformService {
 
 	@Override
 	public Platform update(int id, Platform platform) {
-		Platform managed = platRepo.findById(id);
 		
+		Platform managed = show(id);
 		if (managed != null) {
 			managed.setName(platform.getName());
 			
@@ -63,7 +67,7 @@ public class PlatformServiceImpl implements PlatformService {
 
 	@Override
 	public boolean destroy(int id) {
-		Platform result = platRepo.findById(id);
+		Platform result =  show(id);
 		
 		if (result != null) {
 			platRepo.deleteById(id);

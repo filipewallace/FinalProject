@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.mod.entities.ModMedia;
 import com.skilldistillery.mod.entities.Publisher;
 import com.skilldistillery.mod.services.PublisherService;
 
