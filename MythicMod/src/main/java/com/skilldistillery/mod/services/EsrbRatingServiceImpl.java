@@ -6,14 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mod.entities.EsrbRating;
-import com.skilldistillery.mod.repositories.EsrbRespository;
+import com.skilldistillery.mod.entities.Game;
+import com.skilldistillery.mod.repositories.EsrbRatingRespository;
 
 
 @Service
 public class EsrbRatingServiceImpl implements EsrbRatingService {
 	
 	@Autowired
-	private EsrbRespository esrbRepo;
+	private EsrbRatingRespository esrbRepo;
 
 	@Override
 	public List<EsrbRating> index() {
@@ -24,6 +25,13 @@ public class EsrbRatingServiceImpl implements EsrbRatingService {
 		return null;
 	}
 
+	
+//	@Override
+//	public List<EsrbRating> index() {
+//		System.out.println("IN ESRB RATING INDEX SERVICE");
+//		return esrbRepo.findAll();
+//	} 
+	
 	@Override
 	public EsrbRating show(int id) {
 		
