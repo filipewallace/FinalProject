@@ -61,7 +61,7 @@ public class ModServiceImpl implements ModService {
 			updater.setImageUrl(mod.getImageUrl());
 			updater.setPrice(mod.getPrice());
 			updater.setDownloadLink(mod.getDownloadLink());
-			updater.setGames(mod.getGames());
+			updater.setGame(mod.getGame());
 			updater.setUser(mod.getUser());
 			updater.setModMedias(mod.getModMedias());
 			updater.setPosts(mod.getPosts());
