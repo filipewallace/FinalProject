@@ -98,7 +98,7 @@ public class ModServiceImpl implements ModService {
 		if (!modRepo.existsById(gameId)) {
 			return null;
 		}
-		return modRepo.findByGames_Id(gameId);
+		return modRepo.findByGame_Id(gameId);
 	}
 
 }
