@@ -12,10 +12,20 @@ public interface GameService {
 
 	public List<Game> gameIndex();
 
-	public Game createGame( Game game);
+	public Game createGame(Game game);
 
 	public Game updateGame(int gameId, Game game);
 
 	public boolean destroyGame(int gameId);
+
+	public List<Game> showGamesByPlatform(Integer platformId);
+
+	public List<Game> showGamesByDeveloper(Integer developerId);
+
+	public List<Game> showGamesByPublisher(Integer publisherId);
+
+	public List<Game> showGamesByRating(Integer ratingId);
+	
+	public List<Game> showGamesByCategory(Integer categoryId);
 
 }

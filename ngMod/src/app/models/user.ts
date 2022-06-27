@@ -3,6 +3,7 @@ export class User {
   username: string | null;
   password: string | null;
   role: string | null;
+
   constructor(
     id: number | null = 0,
     username: string | null = '',

@@ -113,4 +113,94 @@ public class GameController {
 
 	}
 
+	@GetMapping("games/{platformId}/platfrom")
+	public List<Game> gamesByPlatform(@PathVariable int platformId, HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {
+
+		try {
+			List<Game> games = gameServ.showGamesByPlatform(platformId);
+			if (games == null) {
+				res.setStatus(404);
+			}
+			return games;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+
+	}
+
+	@GetMapping("games/{developerId}/developer")
+	public List<Game> gamesByDeveloper(@PathVariable int developerId, HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {
+
+		try {
+			List<Game> games = gameServ.showGamesByDeveloper(developerId);
+			if (games == null) {
+				res.setStatus(404);
+			}
+			return games;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+
+	}
+
+	@GetMapping("games/{publisherId}/publisher")
+	public List<Game> gamesByPublisher(@PathVariable int publisherId, HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {
+
+		try {
+			List<Game> mods = gameServ.showGamesByPublisher(publisherId);
+			if (mods == null) {
+				res.setStatus(404);
+			}
+			return mods;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+
+	}
+
+	@GetMapping("games/{ratingId}/rating")
+	public List<Game> gamesByRating(@PathVariable int ratingId, HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {
+
+		try {
+			List<Game> games = gameServ.showGamesByRating(ratingId);
+			if (games == null) {
+				res.setStatus(404);
+			}
+			return games;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+
+	}
+	
+	@GetMapping("games/{categoryId}/category")
+	public List<Game> showGamesByCategory(@PathVariable int categoryId, HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {
+
+		try {
+			List<Game> games = gameServ.showGamesByRating(categoryId);
+			if (games == null) {
+				res.setStatus(404);
+			}
+			return games;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+
+	}
+
 }

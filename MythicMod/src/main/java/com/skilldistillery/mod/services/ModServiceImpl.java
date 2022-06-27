@@ -76,10 +76,29 @@ public class ModServiceImpl implements ModService {
 
 	@Override
 	public boolean destroyMod(int modId) {
-		
+
 		modRepo.deleteById(modId);
 		boolean deleted = !modRepo.existsById(modId);
 		return deleted;
+	}
+
+	// FIND ALL MODS WITH USER ID
+	@Override
+	public List<Mod> getModsByUser(Integer userId) {
+
+		if (!modRepo.existsById(userId)) {
+			return null;
+		}
+		return modRepo.findByUser_Id(userId);
+	}
+
+	@Override
+	public List<Mod> getModsByGame(Integer gameId) {
+
+		if (!modRepo.existsById(gameId)) {
+			return null;
+		}
+		return modRepo.findByGames_Id(gameId);
 	}
 
 }
