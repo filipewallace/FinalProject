@@ -1,0 +1,17 @@
+#container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: .2fr 1fr 1fr 1fr 1fr .2fr;
+  grid-template-rows: 0.5fr 1fr 1fr .2fr;
+  grid-template-areas:
+  "nav nav nav nav nav nav"
+  "sidebar main main main main sidebar2"
+  "sidebar content1 content1 content1 content1 sidebar2"
+  "footer footer footer footer footer footer";
+  grid-gap: 1.5rem;
+
+}
+
+
+
+
