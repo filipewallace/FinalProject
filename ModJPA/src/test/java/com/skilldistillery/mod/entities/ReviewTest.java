@@ -36,7 +36,7 @@ class ReviewTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		CompositeIDReview jid1 = new CompositeIDReview();
-		jid1.setUserId(1);
+		jid1.setUserId(2);
 		jid1.setModId(1);
 		reviewTest1 = em.find(Review.class, jid1);
 
