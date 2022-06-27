@@ -64,18 +64,17 @@ public class ReviewController {
 //		return attend;
 //	}
 //	
-	@PostMapping("review/{modId}/user/{userId}")
+	@PostMapping("review/{modId}/user")
 	public Review addReview(
 			Principal principal,
 			@RequestBody Review review, 
-			@PathVariable Integer userId,
 			@PathVariable Integer modId,
 			HttpServletRequest req,
 			HttpServletResponse res
 	) {
 		
 		try {
-			review = reviewServ.writeReview(userId, modId, review);
+			review = reviewServ.writeReview(principal.getName(), modId, review);
 			if (review == null) {
 				res.setStatus(404);
 			}
@@ -92,18 +91,17 @@ public class ReviewController {
 		return review;
 	}
 	
-	@PutMapping("review/{modId}/user/{userId}")
+	@PutMapping("review/{modId}/user")
 	public Review updateReview(
 			Principal principal,
 			@RequestBody Review review, 
-			@PathVariable Integer userId,
 			@PathVariable Integer modId,
 			HttpServletRequest req,
 			HttpServletResponse res
 	) {
 		
 		try {
-			review = reviewServ.updateReview(userId, modId, review);
+			review = reviewServ.updateReview(principal.getName(), modId, review);
 			if (review == null) {
 				res.setStatus(404);
 			}
@@ -120,15 +118,14 @@ public class ReviewController {
 		return review;
 	}
 	
-	@DeleteMapping("review/{modId}/user/{userId}")
+	@DeleteMapping("review/{modId}/user")
 	public void destroy(Principal principal,
-			@PathVariable Integer userId,
 			@PathVariable Integer modId,
 			HttpServletRequest req,
 			HttpServletResponse res) {
 
 		try {
-			if (reviewServ.deleteReview(userId, modId)) {
+			if (reviewServ.deleteReview(principal.getName(), modId)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);

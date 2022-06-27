@@ -11,9 +11,10 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	
 	List<Review> findByUser_Username(String username);
 	
-	Review findByIdAndUser_Username(int id, String username);
+	Review findByMod_IdAndUser_Username(int modId, String username);
 
 	boolean existsById(CompositeIDReview reviewId);
+	
 	
 
 }

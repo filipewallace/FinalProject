@@ -27,11 +27,11 @@ public class ReviewServiceImpl implements ReviewService {
 	private ModRepository modRepo;
 
 	@Override
-	public Review writeReview(int userId, int modId, Review review) {
+	public Review writeReview(String username, int modId, Review review) {
 		Mod mod = modRepo.queryById(modId);
-		User user = userRepo.queryById(userId);
+		User user = userRepo.findByUsername(username);
 		if (mod != null && user != null) {
-			CompositeIDReview reviewId = new CompositeIDReview(userId, modId);
+			CompositeIDReview reviewId = new CompositeIDReview(user.getId(), modId);
 			review.setId(reviewId);
 			review.setMod(mod);
 			review.setUser(user);
@@ -42,34 +42,29 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	
 	@Override
-	public Review updateReview(int userId, int modId, Review review) {
+	public Review updateReview(String username, int modId, Review review) {
 		Mod mod = modRepo.queryById(modId);
-		User user = userRepo.queryById(userId);
+		User user = userRepo.findByUsername(username);
 		if (mod != null && user != null) {
-			CompositeIDReview reviewId = new CompositeIDReview(userId, modId);
+			CompositeIDReview reviewId = new CompositeIDReview(user.getId(), modId);
 			review.setId(reviewId);
 			review.setMod(mod);
 			review.setUser(user);
-//			review.setScore(modId);
-//			review.setOpinion(null);
 			return reviewRepo.saveAndFlush(review);
 		}
 		return null;
 	}
 
-	public Boolean deleteReview(Integer userId, Integer modId) {
-
-		Mod mod = modRepo.queryById(modId);
-		User user = userRepo.queryById(userId);
-
-		if (mod != null && user != null) {
-			CompositeIDReview reviewId = new CompositeIDReview(userId, modId);
-
-			Review review = new Review();
-			review.setId(reviewId);
+	public Boolean deleteReview(String username, Integer modId) {
+			
+		
+		Review review= reviewRepo.findByMod_IdAndUser_Username(modId, username);
+		
+		if (review != null) {
+			
 			reviewRepo.delete(review);
 
-			boolean deleted = !reviewRepo.existsById(reviewId);
+			boolean deleted = !reviewRepo.existsById(review.getId());
 			return deleted;
 		}
 
@@ -112,43 +107,43 @@ public class ReviewServiceImpl implements ReviewService {
 		return userReviews;
 	}
 
-	@Override
-	public Review create(String username, Review review) {
-		User user = userRepo.findByUsername(username);
-		if (user != null) {
-			review.setUser(user);
-			return reviewRepo.saveAndFlush(review);
-		} else {
-			return null;
-		}
+//	@Override
+//	public Review create(String username, Review review) {
+//		User user = userRepo.findByUsername(username);
+//		if (user != null) {
+//			review.setUser(user);
+//			return reviewRepo.saveAndFlush(review);
+//		} else {
+//			return null;
+//		}
+//
+//	}
+//
+//	@Override
+//	public Review update(String username, int rid, Review reveiw) {
+//		Review managed = reviewRepo.findByIdAndUser_Username(rid, username);
+//		if (managed != null) {
+//			managed.setScore(reveiw.getScore());
+//			managed.setOpinion(reveiw.getOpinion());
+//			managed.setUser(reveiw.getUser());
+//			managed.setMod(reveiw.getMod());
+//			managed.setReviewDate(reveiw.getReviewDate());
+//			reviewRepo.saveAndFlush(managed);
+//			return managed;
+//		}
+//		return null;
+//	}
 
-	}
-
-	@Override
-	public Review update(String username, int rid, Review reveiw) {
-		Review managed = reviewRepo.findByIdAndUser_Username(rid, username);
-		if (managed != null) {
-			managed.setScore(reveiw.getScore());
-			managed.setOpinion(reveiw.getOpinion());
-			managed.setUser(reveiw.getUser());
-			managed.setMod(reveiw.getMod());
-			managed.setReviewDate(reveiw.getReviewDate());
-			reviewRepo.saveAndFlush(managed);
-			return managed;
-		}
-		return null;
-	}
-
-	@Override
-	public boolean destroy(String username, int rid) {
-		Review managed = reviewRepo.findByIdAndUser_Username(rid, username);
-		if (managed != null) {
-			reviewRepo.deleteById(rid);
-			return true;
-		}
-
-		return false;
-	}
+//	@Override
+//	public boolean destroy(String username, int rid) {
+//		Review managed = reviewRepo.findByIdAndUser_Username(rid, username);
+//		if (managed != null) {
+//			reviewRepo.deleteById(rid);
+//			return true;
+//		}
+//
+//		return false;
+//	}
 
 //	@Override
 //	public boolean destroy( int rid) {
@@ -161,27 +156,27 @@ public class ReviewServiceImpl implements ReviewService {
 //		return false;
 //	}
 
-	@Override
-	public List<Review> index(String username) {
-		if (reviewRepo.findByUser_Username(username) == null) {
-			return null;
-		}
-		return reviewRepo.findByUser_Username(username);
-	}
-
-	@Override
-	public Review show(String username, int rid) {
-		Review result = reviewRepo.findByIdAndUser_Username(rid, username);
-		if (result == null) {
-			return null;
-		}
-		return result;
-	}
-
-	@Override
-	public boolean destroy(int rid) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	@Override
+//	public List<Review> index(String username) {
+//		if (reviewRepo.findByUser_Username(username) == null) {
+//			return null;
+//		}
+//		return reviewRepo.findByUser_Username(username);
+//	}
+//
+//	@Override
+//	public Review show(String username, int rid) {
+//		Review result = reviewRepo.findByIdAndUser_Username(rid, username);
+//		if (result == null) {
+//			return null;
+//		}
+//		return result;
+//	}
+//
+//	@Override
+//	public boolean destroy(int rid) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
 }

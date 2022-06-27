@@ -64,6 +64,7 @@ public class Mod {
 	@OneToMany(mappedBy = "mod")
 	private List<ModMedia> modMedias;
 	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "mod")
 	private List<Post> posts;
