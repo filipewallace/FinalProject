@@ -10,11 +10,13 @@ public interface OrderService {
 	
 	public Order findOrderById(int id);
 	
-	public Order createOrder(Order order);
+	public Order createOrder(Order order, int modId);
 	
-	public Order updateOrder(Order order);
+	public Order updateOrder(Order order, int modId);
 	
 	public Boolean destroyOrder (int id);
+	
+//	public Order findCustomerOrder(String username, int orderId);
 	
 
 }

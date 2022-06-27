@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "mod_order")
 public class Order {
@@ -33,6 +35,7 @@ public class Order {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+
 	@ManyToMany
 	@JoinTable(name = "mod_has_order", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "mod_id"))
 	private List<Mod> mods;

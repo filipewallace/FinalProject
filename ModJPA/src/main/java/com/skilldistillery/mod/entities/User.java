@@ -64,7 +64,8 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders;
-
+	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "user_has_mod", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "mod_id"))
 	private List<Mod> userGroupMods;
