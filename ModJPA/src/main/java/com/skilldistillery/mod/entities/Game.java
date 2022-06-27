@@ -55,7 +55,7 @@ public class Game {
 	private EsrbRating rating;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "games")
+	@OneToMany(mappedBy = "game")
 	private List<Mod> mods;
 
 	public Game() {
@@ -175,13 +175,13 @@ public class Game {
 
 		if (!mods.contains(mod)) {
 			mods.add(mod);
-			mod.setGames(this);
+			mod.setGame(this);
 		}
 	}
 
 	public void removeMod(Mod mod) {
 
-		mod.setGames(null);
+		mod.setGame(null);
 		if (mods != null && mods.contains(mod)) {
 			mods.remove(mod);
 		}

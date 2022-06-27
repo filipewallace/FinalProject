@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -45,18 +48,30 @@ public class User {
 
 	@Column(name = "img_url")
 	private String image;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Mod> mods;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<ModMedia> modMedias;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<Order> orders;
+
+	@ManyToMany
+	@JoinTable(name = "user_has_mod", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "mod_id"))
+	private List<Mod> userGroupMods;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews;
 
 	public User() {
 		super();
@@ -150,6 +165,38 @@ public class User {
 		this.mods = mods;
 	}
 
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public List<Mod> getUserGroupMods() {
+		return userGroupMods;
+	}
+
+	public void setUserGroupMods(List<Mod> userGroupMods) {
+		this.userGroupMods = userGroupMods;
+	}
+
+	public List<ModMedia> getModMedias() {
+		return modMedias;
+	}
+
+	public void setModMedias(List<ModMedia> modMedias) {
+		this.modMedias = modMedias;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
 	public void addMod(Mod mod) {
 
 		if (mods == null) {
@@ -210,55 +257,49 @@ public class User {
 		}
 	}
 
-	public List<ModMedia> getModMedias() {
-		return modMedias;
+	public void addOrder(Order order) {
+
+		if (orders == null) {
+			orders = new ArrayList<>();
+		}
+
+		if (!orders.contains(order)) {
+			orders.add(order);
+			order.setUser(this);
+		}
+
 	}
 
-	public void setModMedias(List<ModMedia> modMedias) {
-		this.modMedias = modMedias;
+	public void removeOrder(Order order) {
+
+		order.setUser(null);
+		if (orders != null && orders.contains(order)) {
+			orders.remove(order);
+
+		}
 	}
 
-	public List<Post> getPosts() {
-		return posts;
+	public void addUserGroupMods(Mod userGroupMod) {
+
+		if (userGroupMods == null) {
+			userGroupMods = new ArrayList<>();
+		}
+
+		if (!userGroupMods.contains(userGroupMod)) {
+			userGroupMods.add(userGroupMod);
+			userGroupMod.setUser(this);
+		}
+
 	}
 
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
+	public void removeUserGroupMods(Mod userGroupMod) {
+
+		userGroupMod.setUser(null);
+		if (userGroupMods != null && userGroupMods.contains(userGroupMod)) {
+			userGroupMods.remove(userGroupMod);
+
+		}
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "user")
-//	private List<Order> orders;
-
-//	public void addOrder(Order order) {
-//
-//		if (orders == null) {
-//			orders = new ArrayList<>();
-//		}
-//
-//		if (!orders.contains(order)) {
-//			orders.add(order);
-//			order.setUser(this);
-//		}
-//
-//	}
-//
-//	public void removeOrder(Order order) {
-//
-//		order.setUser(null);
-//		if (reviews != null && reviews.contains(order)) {
-//			reviews.remove(order);
-//
-//		}
-//	}
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "user")
-	private List<Review> reviews;
 
 	public void addReview(Review review) {
 
@@ -288,6 +329,11 @@ public class User {
 
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
 	@Override
