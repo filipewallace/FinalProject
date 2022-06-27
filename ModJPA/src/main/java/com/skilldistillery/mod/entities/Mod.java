@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -51,27 +52,34 @@ public class Mod {
 
 	@Column(name = "download_link")
 	private String downloadLink;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "game_id")
-	private Game games;
+	private Game game;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "mod")
 	private List<ModMedia> modMedias;
-	
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "mod")
 	private List<Post> posts;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "mod")
 	private List<Review> reviews;
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "mods")
+	private List<Order> orders;
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "userGroupMods")
+	private List<User> users;
 
 	public Mod() {
 		super();
@@ -157,12 +165,12 @@ public class Mod {
 		this.downloadLink = downloadLink;
 	}
 
-	public Game getGames() {
-		return games;
+	public Game getGame() {
+		return game;
 	}
 
-	public void setGames(Game games) {
-		this.games = games;
+	public void setGame(Game game) {
+		this.game = game;
 	}
 
 	public User getUser() {
@@ -187,6 +195,30 @@ public class Mod {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	public void addModMedia(ModMedia modMedia) {
@@ -229,7 +261,6 @@ public class Mod {
 		}
 	}
 
-
 	public void addReview(Review review) {
 
 		if (reviews == null) {
@@ -252,12 +283,24 @@ public class Mod {
 		}
 	}
 
-	public List<Review> getReviews() {
-		return reviews;
+	public void addOrder(Order order) {
+
+		if (orders == null) {
+			orders = new ArrayList<>();
+		}
+
+		if (!orders.contains(order)) {
+			orders.add(order);
+			order.addMod(this);
+		}
 	}
 
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
+	public void removeOrder(Order order) {
+
+		if (orders != null && orders.contains(order)) {
+			orders.remove(order);
+			order.removeMod(this);
+		}
 	}
 
 	@Override
