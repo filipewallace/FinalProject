@@ -20,14 +20,14 @@ export class AuthService {
     // Send credentials as Authorization header specifying Basic HTTP authentication
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${credentials}`,
+        'Authorization': `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest',
       }),
     };
 
     // Create GET request to authenticate credentials
     //httpOptions
-    return this.http.get<User>(this.url + 'authenticate').pipe(
+    return this.http.get<User>(this.url + 'authenticate', httpOptions).pipe(
       tap((newUser) => {
         // While credentials are stored in browser localStorage, we consider
         // ourselves logged in.

@@ -44,6 +44,7 @@ public class Post {
 	private Mod mod;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "reply_to_id")
 	private Post inReplyTo;
 	

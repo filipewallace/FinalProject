@@ -230,11 +230,32 @@ public class User {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "user")
+//	private List<Order> orders;
 
-	// TODO SKILL
-	// ONE TO MANY SKILL/RESUME
-	// JOIN TABLE Job_skill
-	// COMPOSITE ID jobSKillID
+//	public void addOrder(Order order) {
+//
+//		if (orders == null) {
+//			orders = new ArrayList<>();
+//		}
+//
+//		if (!orders.contains(order)) {
+//			orders.add(order);
+//			order.setUser(this);
+//		}
+//
+//	}
+//
+//	public void removeOrder(Order order) {
+//
+//		order.setUser(null);
+//		if (reviews != null && reviews.contains(order)) {
+//			reviews.remove(order);
+//
+//		}
+//	}
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Review> reviews;
