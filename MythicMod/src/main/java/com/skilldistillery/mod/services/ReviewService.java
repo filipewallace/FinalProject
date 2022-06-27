@@ -16,10 +16,18 @@ public interface ReviewService {
 	
 	public boolean destroy(String username, int rid);
 
-	Review writeReview(int userId, int modId, Review review);
+	public Review writeReview(int userId, int modId, Review review);
 	
-	List<Review> listModReviews(int reviewId);
+	public List<Review> listModReviews(int reviewId);
 
-	List<Review> listUserReviews(int reviewId);
+	public List<Review> listUserReviews(int reviewId);
+	
+	public Review updateReview(int userId, int modId, Review review);
+	
+	public Boolean deleteReview(Integer userId, Integer modId);
+
+	public boolean destroy(int rid);
+
+	
 
 }
