@@ -4,7 +4,7 @@ export class Mods {
   description: string | null;
   version: string | null;
   requirments: string | null;
-  imgUrl: string | null;
+  imageUrl: string | null;
   price: number  | null;
   downloadLink: string | null;
   game: any[] | null ;
@@ -19,7 +19,7 @@ export class Mods {
   this.description = description;
   this.version = requirments;
   this.requirments = requirments;
-  this.imgUrl = imgUrl;
+  this.imageUrl = imgUrl;
   this.price = price;
   this.downloadLink = downloadLink;
   this.game = game;

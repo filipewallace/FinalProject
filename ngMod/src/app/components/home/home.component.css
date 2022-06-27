@@ -49,11 +49,7 @@ main {
   background-color: #73ffba;
   grid-area:content3;
 }
-.carousel {
 
-  grid-area: carousel;
-
-}
 
 
 .card {
@@ -68,4 +64,12 @@ main {
 footer {
   background-color: purple;
   grid-area:footer;
+}
+
+
+.carousel-img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

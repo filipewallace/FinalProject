@@ -12,23 +12,27 @@
     <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Home</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Mods</a>
+    <a class="nav-link" href="#" *ngIf="loggedIn()" [routerLink]="['/mod']">Mods</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Games</a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="#">Profile</a>
+    <a class="nav-link" href="#" *ngIf="loggedIn()">Profile</a>
   </li>
 </ul>
 <div class="d-flex align-items-center">
-  <button type="button" class="btn btn-link px-3 me-2" [routerLink]="['/login']">
+  <button type="button" class="btn btn-link px-3 me-2" [routerLink]="['/login']" *ngIf="! loggedIn()">
     Login
   </button>
-  <button type="button" class="btn btn-primary me-3" [routerLink]="['/register']">
+  <button type="button" class="btn btn-primary me-3" [routerLink]="['/register']" *ngIf="! loggedIn()">
     Sign up for free
   </button>
+
+    <div *ngIf="loggedIn()">
+      <app-logout></app-logout>
+    </div>
   <a
     class="btn btn-dark px-3"
     href="https://github.com/mdbootstrap/mdb-ui-kit"
