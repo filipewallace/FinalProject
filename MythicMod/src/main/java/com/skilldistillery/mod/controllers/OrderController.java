@@ -83,7 +83,7 @@ public class OrderController {
 		return order;
 	}
 	
-	@DeleteMapping("exercise/{id}")
+	@DeleteMapping("order/{id}")
 	public void deleteFilm(
 			
 			@PathVariable int id, 

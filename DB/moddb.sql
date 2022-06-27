@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `mod_order` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `cc_owner_name` VARCHAR(200) NULL,
   `billing_address` TEXT NULL,
-  `user_id` INT NOT NULL,
+  `user_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_order_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_order_user1`
@@ -545,7 +545,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `moddb`;
-INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (1, 'Mod Okay', 'I like the idea behind this mod, but I think there are better ones out there.', 1, 1, NULL, NULL);
+INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (1, 'Mod Okay', 'I like the idea behind this mod, but I think there are better ones out there.', 1, 1, '2022-03-03', 1);
+INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (2, 'Nice Mod', 'This is a pretty good mod, in my opinion.', 2, 2, '2022-01-13', 2);
+INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (3, 'Cool Idea', 'The idea behind this mod is really cool. Of course, there are some improvements that could be made. Overall, it\'s a good mod.', 3, 8, '2021-10-17', 3);
+INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (4, 'Very Innovative', 'I like the innovation of this mod.', 2, 9, '2022-08-05', 4);
+INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (5, 'Best Mod Ever', 'By far the best mod I\'ve ever seen for this game.', 3, 7, '2020-01-02', 5);
+INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (6, 'Don\'t Understand', 'I really don\'t understand the purpose of this mod.', 4, 6, '2019-03-08', 6);
+INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (7, 'Worst Ever', 'Horrible. Just horrible. A real waste.', 5, 4, '2020-03-05', 7);
+INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (8, 'Could Be Better', 'It\'s not bad, but it\'s not great either. Needs some work.', 6, 5, '2022-05-09', 8);
+INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (9, 'Fantastic!', 'I am so pleased with this mod.', 7, 3, '2022-08-05', 9);
+INSERT INTO `post` (`id`, `title`, `comment`, `mod_id`, `user_id`, `comment_date`, `reply_to_id`) VALUES (10, 'Awesome!!!!!!!!', 'This mod is awesome. By far my favorite.', 8, 2, '2022-03-06', 10);
 
 COMMIT;
 

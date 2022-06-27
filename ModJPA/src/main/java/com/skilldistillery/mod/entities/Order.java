@@ -19,6 +19,9 @@ public class Order {
 
 	@Column(name = "cc_owner_name")
 	private String name;
+	
+	@Column(name = "billing_address")
+	private String address;
 
 	public Order() {
 		super();
@@ -38,6 +41,14 @@ public class Order {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	@Override
