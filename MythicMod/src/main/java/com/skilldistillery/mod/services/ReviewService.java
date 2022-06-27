@@ -6,7 +6,7 @@ import com.skilldistillery.mod.entities.Review;
 
 public interface ReviewService {
 	
-	Review writeReview(String uername, int modId, Review review);
+	Review writeReview(String username, int modId, Review review);
 	
 	public List<Review> listModReviews(int reviewId);
 
