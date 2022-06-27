@@ -34,10 +34,9 @@ public class OrderController {
 
 	@GetMapping("order/{id}")
 	public Order listOrderById(
-			
-			@PathVariable int id, 
-			HttpServletResponse res) {
-		
+
+			@PathVariable int id, HttpServletResponse res) {
+
 		if (ordServ.findOrderById(id) == null) {
 			res.setStatus(404);
 		} else {
@@ -46,59 +45,66 @@ public class OrderController {
 		}
 		return null;
 	}
-	
-	@PostMapping("order")
+
+	@PostMapping("order/{modId}")
 	public Order addNewOrder(
-			
-			@RequestBody Order order, 
-			HttpServletRequest req, 
-			HttpServletResponse res) {
-		
+
+			@RequestBody Order order, @PathVariable int modId, HttpServletRequest req, HttpServletResponse res) {
+
 		try {
-			order = ordServ.createOrder(order);
+			order = ordServ.createOrder(order, modId);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(order.getId());
 			res.setHeader("Location", url.toString());
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 			res.setStatus(400);
 			order = null;
 		}
 		return order;
 	}
-	
-	@PutMapping("order/{id}")
+
+	@PutMapping("order/{modId}")
 	public Order updateExercise(
-			
-			@RequestBody Order order, 
-			HttpServletResponse res) {
-		
+
+			@RequestBody Order order, @PathVariable int modId, HttpServletResponse res) {
+
 		if (order == null) {
 			res.setStatus(404);
 		} else {
-			order = ordServ.updateOrder(order);
+			order = ordServ.updateOrder(order, modId);
 		}
 		return order;
 	}
-	
+
 	@DeleteMapping("order/{id}")
 	public void deleteFilm(
-			
-			@PathVariable int id, 
-			HttpServletResponse res) {
-		try{
-			if(ordServ.destroyOrder(id)){
+
+			@PathVariable int id, HttpServletResponse res) {
+		try {
+			if (ordServ.destroyOrder(id)) {
 				res.setStatus(204);
-			}else {
+			} else {
 				res.setStatus(404);
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			res.setStatus(400);
 		}
-		
-		
-	}
+
+	}	
+	
+//	@GetMapping("order/{orderId}")
+//	public Order showOrderByIdAndUsername(Principal principal, @PathVariable int id, HttpServletResponse res) {
+//
+//		if (ordServ.findCustomerOrder(principal.getName(), id) == null) {
+//			res.setStatus(404);
+//		} else {
+//
+//			return ordServ.findCustomerOrder(principal.getName(), id);
+//		}
+//		return null;
+//	}
 
 }
