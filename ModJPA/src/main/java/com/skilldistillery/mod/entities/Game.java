@@ -33,7 +33,7 @@ public class Game {
 	@Column(name = "img_url")
 	private String imageUrl;
 	
-	@JsonIgnore
+
 	@ManyToMany
 	@JoinTable(name = "game_has_category", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private List<Category> categories;
