@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
+
+
+  loggedIn(): boolean {
+    return this.auth.checkLogin();
+  }
 
   ngOnInit(): void {
+
   }
 
 }

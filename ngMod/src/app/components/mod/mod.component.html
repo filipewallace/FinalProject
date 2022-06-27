@@ -1,0 +1,28 @@
+<div id="content1">
+  <div
+    class="container-fluid bg-trasparent my-4 p-3"
+    style="position: relative"
+  >
+    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+      <div class="col" *ngFor="let m of mods">
+        <div class="card h-100 shadow-sm">
+          <img [src]="m.imageUrl" class="card-img-top" alt="..." name="imgUrl" />
+          <div class="card-body">
+            <div class="clearfix mb-3">
+              <span class="float-start badge rounded-pill bg-primary">{{
+                m.title
+              }}</span>
+              <span class="float-end price-hp">{{ m.description }}</span>
+            </div>
+            <h5 class="card-title"></h5>
+            <div class="text-center my-4">
+              <a href="#" class="btn btn-primary" [routerLink]="['/mod']"
+                >view</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

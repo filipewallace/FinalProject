@@ -22,6 +22,9 @@ import { PostService } from './services/post.service';
 import { PublisherService } from './services/publisher.service';
 import { RatingService } from './services/rating.service';
 import { ReviewService } from './services/review.service';
+import { LogoutComponent } from './components/logout/logout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModComponent } from './components/mod/mod.component'
 
 
 @NgModule({
@@ -31,14 +34,18 @@ import { ReviewService } from './services/review.service';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ModprofileComponent
+    ModprofileComponent,
+    LogoutComponent,
+    ModComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    BrowserModule,
+    BrowserAnimationsModule
 
   ],
 
