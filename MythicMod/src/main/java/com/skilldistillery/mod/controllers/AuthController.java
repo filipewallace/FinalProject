@@ -32,6 +32,7 @@ public class AuthController {
 
 	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
 	public User authenticate(Principal principal) {
+		System.out.println(principal);
 	    return authService.getUserByUsername(principal.getName());
 	}
 
