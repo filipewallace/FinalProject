@@ -27,8 +27,8 @@ public class ReviewServiceImpl implements ReviewService {
 	private ModRepository modRepo;
 
 	@Override
-	public Review writeReview(String modTitle, int userId, int modId, Review review) {
-		Mod mod = modRepo.findByTitleAndId(modTitle, modId);
+	public Review writeReview(int userId, int modId, Review review) {
+		Mod mod = modRepo.queryById(modId);
 		User user = userRepo.queryById(userId);
 		if (mod != null && user != null) {
 			CompositeIDReview reviewId = new CompositeIDReview(userId, modId);
@@ -41,11 +41,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> listUserReviews(int reviewId) {
+	public List<Review> listModReviews(int reviewId) {
 		
 		List<Review> modReviews = new ArrayList<>();
-		List<Review> userReviews = reviewRepo.findAll();
-		for (Review review : userReviews) {
+		List<Review> reviewList = reviewRepo.findAll();
+		for (Review review : reviewList) {
 			if (review.getMod().getId() == reviewId) {
 				modReviews.add(review);
 				
@@ -59,6 +59,27 @@ public class ReviewServiceImpl implements ReviewService {
 //		return reviewRepo.findAll(modId);
 	}
 
+	
+	@Override
+	public List<Review> listUserReviews(int reviewId) {
+		
+		System.out.println("REVIEW ID:"+reviewId);
+		
+		List<Review> userReviews = new ArrayList<>();
+		List<Review> reviewList = reviewRepo.findAll();
+		for (Review review : reviewList) {
+			if (review.getUser().getId() == reviewId) {
+				
+				System.out.println("REVIEW: "+review);
+				
+				userReviews.add(review);
+				
+			}
+			
+		}
+		return userReviews;
+	}
+		
 	@Override
 	public Review create(String username, Review review) {
 		User user = userRepo.findByUsername(username);
