@@ -78,4 +78,45 @@ public class GameServiceImpl implements GameService {
 		return deleted;
 	}
 
+	@Override
+	public List<Game> showGamesByPlatform(Integer platformId) {
+		if (!gameRepo.existsById(platformId)) {
+			return null;
+		}
+		return gameRepo.findByPlatform_Id(platformId);
+	}
+
+	@Override
+	public List<Game> showGamesByDeveloper(Integer developerId) {
+		if (!gameRepo.existsById(developerId)) {
+			return null;
+		}
+		return gameRepo.findByDev_Id(developerId);
+	}
+
+	@Override
+	public List<Game> showGamesByPublisher(Integer publisherId) {
+		if (!gameRepo.existsById(publisherId)) {
+			return null;
+		}
+		return gameRepo.findByDev_Id(publisherId);
+	}
+
+	@Override
+	public List<Game> showGamesByRating(Integer ratingId) {
+		if (!gameRepo.existsById(ratingId)) {
+			return null;
+		}
+		return gameRepo.findByRating_Id(ratingId);
+	}
+
+	@Override
+	public List<Game> showGamesByCategory(Integer categoryId) {
+		if (!gameRepo.existsById(categoryId)) {
+			return null;
+		}
+		return gameRepo.findByCategories_Id(categoryId);
+	}
+
+	
 }

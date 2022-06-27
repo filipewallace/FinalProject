@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mod.entities.EsrbRating;
-import com.skilldistillery.mod.entities.Game;
 import com.skilldistillery.mod.repositories.EsrbRatingRespository;
 
 

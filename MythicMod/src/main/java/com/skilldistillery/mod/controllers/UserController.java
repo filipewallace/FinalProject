@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.mod.entities.Mod;
 import com.skilldistillery.mod.entities.User;
 import com.skilldistillery.mod.services.UserService;
 
@@ -104,7 +105,6 @@ public class UserController {
 		return user;
 	}
 	
-	//COMMENT TEST
 	@GetMapping("user")
 	public List<User> userIndex(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		try {
@@ -119,6 +119,22 @@ public class UserController {
 			return null;
 		}
 
+	}
+	@GetMapping("user/{userId}/mods")
+	public List<Mod> showUserMods(@PathVariable int userId, HttpServletRequest req, HttpServletResponse res, Principal principal){
+		
+		try {
+			List<Mod> mods = userService.getUserMods(userId);
+			if (mods == null) {
+				res.setStatus(404);
+			}
+			return mods;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+		
 	}
 
 }

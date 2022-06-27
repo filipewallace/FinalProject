@@ -96,7 +96,6 @@ public class ModController {
 		return mod;
 
 	}
-	
 
 	@DeleteMapping("mods/{id}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
@@ -113,4 +112,41 @@ public class ModController {
 		}
 
 	}
+
+	@GetMapping("mods/{userId}/user")
+	public List<Mod> showModsByUser(@PathVariable int userId, HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {
+
+		try {
+			List<Mod> mods = modServ.getModsByUser(userId);
+			if (mods == null) {
+				res.setStatus(404);
+			}
+			return mods;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+
+	}
+
+	@GetMapping("mods/{gameId}/game")
+	public List<Mod> showModsByGame(@PathVariable int gameId, HttpServletRequest req, HttpServletResponse res,
+			Principal principal) {
+
+		try {
+			List<Mod> mods = modServ.getModsByGame(gameId);
+			if (mods == null) {
+				res.setStatus(404);
+			}
+			return mods;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+
+	}
+
 }

@@ -17,6 +17,10 @@ public interface ModService {
 	public Mod updateMod(int modId, Mod mod);
 
 	public boolean destroyMod(int modId);
+	
+	public List<Mod> getModsByUser(Integer userId);
+	
+	public List<Mod> getModsByGame(Integer gameId);
 
 
 }
