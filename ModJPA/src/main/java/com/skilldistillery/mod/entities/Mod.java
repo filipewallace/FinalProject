@@ -241,23 +241,23 @@ public class Mod {
 		}
 	}
 
-	public void addPost(Post post) {
+	public void addUsersToMod(User user) {
 
-		if (posts == null) {
-			posts = new ArrayList<>();
+		if (users == null) {
+			users = new ArrayList<>();
 		}
 
-		if (!posts.contains(post)) {
-			posts.add(post);
-			post.setMod(this);
+		if (!users.contains(user)) {
+			users.add(user);
+			user.addUserGroupMods(this);
 		}
 	}
 
-	public void removePost(Post post) {
+	public void removeUsersFromMod(User user) {
 
-		post.setMod(null);
-		if (posts != null && posts.contains(post)) {
-			posts.remove(post);
+		user.setUserGroupMods(null);
+		if (users != null && users.contains(user)) {
+			users.remove(user);
 		}
 	}
 
@@ -300,6 +300,26 @@ public class Mod {
 		if (orders != null && orders.contains(order)) {
 			orders.remove(order);
 			order.removeMod(this);
+		}
+	}
+	
+	public void addPost(Post post) {
+
+		if (posts == null) {
+			posts = new ArrayList<>();
+		}
+
+		if (!posts.contains(post)) {
+			posts.add(post);
+			post.setMod(this);
+		}
+	}
+
+	public void removePost(Post post) {
+
+		post.setMod(null);
+		if (posts != null && posts.contains(post)) {
+			posts.remove(post);
 		}
 	}
 

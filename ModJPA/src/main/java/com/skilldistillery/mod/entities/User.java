@@ -69,6 +69,10 @@ public class User {
 	@JoinTable(name = "user_has_mod", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "mod_id"))
 	private List<Mod> userGroupMods;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews;
+
 	public User() {
 		super();
 	}
@@ -177,6 +181,22 @@ public class User {
 		this.userGroupMods = userGroupMods;
 	}
 
+	public List<ModMedia> getModMedias() {
+		return modMedias;
+	}
+
+	public void setModMedias(List<ModMedia> modMedias) {
+		this.modMedias = modMedias;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
 	public void addMod(Mod mod) {
 
 		if (mods == null) {
@@ -237,22 +257,6 @@ public class User {
 		}
 	}
 
-	public List<ModMedia> getModMedias() {
-		return modMedias;
-	}
-
-	public void setModMedias(List<ModMedia> modMedias) {
-		this.modMedias = modMedias;
-	}
-
-	public List<Post> getPosts() {
-		return posts;
-	}
-
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
-	}
-
 	public void addOrder(Order order) {
 
 		if (orders == null) {
@@ -274,7 +278,7 @@ public class User {
 
 		}
 	}
-	
+
 	public void addUserGroupMods(Mod userGroupMod) {
 
 		if (userGroupMods == null) {
@@ -296,10 +300,6 @@ public class User {
 
 		}
 	}
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "user")
-	private List<Review> reviews;
 
 	public void addReview(Review review) {
 

@@ -74,5 +74,13 @@ class UserTest {
 		assertTrue(user.getOrders().size() > 0);
 
 	}
+	
+	@Test
+	void test_User_Mod_ManyToMany_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getUserGroupMods());
+		assertTrue(user.getUserGroupMods().size() > 0);
+
+	}
 
 }
