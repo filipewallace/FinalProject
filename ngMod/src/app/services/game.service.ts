@@ -17,7 +17,7 @@ export class GameService {
     getHttpOption(){
       let option = {
         headers: {
-          Authorization: 'Basic' + this.auth.getCredentials(),
+          Authorization: 'Basic ' + this.auth.getCredentials(),
           'X-Requested-With': 'XMLHttpRequest'
         },
       };
@@ -38,7 +38,7 @@ export class GameService {
 
 
     destroy(id: number): Observable<Game>{
-      return this.http.delete<Game>(this.url+'/'+id, this.getHttpOption()).pipe(
+      return this.http.delete<Game>(this.url+'/'+id).pipe(
         catchError ((err: any) => {
           console.log(err);
           return throwError(
