@@ -1,0 +1,5 @@
+<h2>{{game.name}}</h2>
+<li *ngFor="let mod of game.mods">
+<h5>{{mod.title}}</h5>
+<img [src]='mod.imageUrl'>
+</li>

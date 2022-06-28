@@ -25,6 +25,8 @@ import { ReviewService } from './services/review.service';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ModComponent } from './components/mod/mod.component';
 import { GameComponent } from './components/game/game.component';
+import { GameProfileComponent } from './components/game-profile/game-profile.component';
+import { GameModsPipe } from './pipes/game-mods.pipe';
 
 
 
@@ -41,6 +43,8 @@ import { GameComponent } from './components/game/game.component';
     LogoutComponent,
     ModComponent,
     GameComponent,
+    GameProfileComponent,
+    GameModsPipe,
 
 
 
