@@ -49,5 +49,12 @@ private static EntityManagerFactory emf;
 		assertNotNull(order);
 		assertEquals("Joe Doe", order.getName());
 	}
+	
+	@Test	
+	void test_Order_Mod_mapping() {
+		assertNotNull(order);
+		assertNotNull(order.getMods());
+		assertTrue(order.getMods().size() > 0);
+	}
 
 }

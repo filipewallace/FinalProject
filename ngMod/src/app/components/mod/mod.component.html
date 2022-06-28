@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="content1">
+  <div
+    class="container-fluid bg-trasparent my-4 p-3"
+    style="position: relative"
+  >
+    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+      <div class="col" *ngFor="let m of mods" >
+        <div class="card h-100 shadow-sm">
+          <img [src]="m.imageUrl" class="card-img-top" alt="..." name="imgUrl" />
+          <div class="card-body">
+            <div class="clearfix mb-3">
+              <span class="float-start badge rounded-pill bg-primary">{{
+                m.title
+              }}</span>
+
+              <span class="float-end price-hp">{{ m.description }}</span>
+              <ngb-rating [(rate)]="currentRate"></ngb-rating>
+              <hr>
+              <pre>Rate: <b>{{currentRate}}</b></pre>
+            </div>
+            <h5 class="card-title"></h5>
+            <div class="text-center my-4">
+              <a href="#" class="btn btn-primary" [routerLink]="['/mod']">view</a>
+              <button class="btn btn-danger" (click)="deleteMod(m.id)" >Delete</button>
+              <a class="btn btn-warning" (click)="open(content); editMod=m">Edit</a>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit This Mod </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <form *ngIf="editMod != null">
+  <div class="modal-body">
+
+      <div class="mb-3">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" [(ngModel)]="editMod.title" >
+      </div>
+
+      <label for="description">Description</label>
+      <input type="text" class="text-area form-control" name="description"  [(ngModel)]="editMod.description">
+
+      <label for="version">Version</label>
+      <input type="text" name="version" class="form-control" [(ngModel)]="editMod.version">
+
+      <label for="imageUrl"> Image Url</label>
+      <input type="text" class="text-area form-control" name="imageUrl" [(ngModel)]="editMod.imageUrl" >
+
+      <label for="price">Price</label>
+      <input type="number" name="price" class="form-control"  [(ngModel)]="editMod.price">
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="updateMod(editMod)">Save</button>
+    </div>
+  </form>
+</ng-template>
+
+
+
+
+
+
+
+

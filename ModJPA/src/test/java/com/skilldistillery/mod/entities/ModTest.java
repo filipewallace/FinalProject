@@ -52,8 +52,8 @@ class ModTest {
 	@Test
 	void test_Game_EsrbRating_mapping() {
 		assertNotNull(mod);
-		assertNotNull(mod.getGames());
-		assertEquals("Elden Ring", mod.getGames().getName());
+		assertNotNull(mod.getGame());
+		assertEquals("Elden Ring", mod.getGame().getName());
 
 	}
 	
@@ -80,6 +80,20 @@ class ModTest {
 
 	}
 	
+	@Test
+	void test_Mod_Order_mapping() {
+		assertNotNull(mod);
+		assertNotNull(mod.getOrders());
+		assertTrue(mod.getOrders().size() > 0);
+
+	}
 	
+	@Test
+	void test_Mod_User_ManyToMany_mapping() {
+		assertNotNull(mod);
+		assertNotNull(mod.getUsers());
+		assertTrue(mod.getUsers().size() > 0);
+
+	}
 
 }

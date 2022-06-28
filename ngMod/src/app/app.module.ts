@@ -11,7 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { ModprofileComponent } from './components/modprofile/modprofile.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
 import { DeveloperService } from './services/developer.service';
@@ -22,6 +22,11 @@ import { PostService } from './services/post.service';
 import { PublisherService } from './services/publisher.service';
 import { RatingService } from './services/rating.service';
 import { ReviewService } from './services/review.service';
+import { LogoutComponent } from './components/logout/logout.component';
+import { ModComponent } from './components/mod/mod.component';
+
+
+
 
 
 @NgModule({
@@ -31,13 +36,22 @@ import { ReviewService } from './services/review.service';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ModprofileComponent
+    ModprofileComponent,
+    LogoutComponent,
+    ModComponent,
+
+
+
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgbModule,
+    BrowserModule,
     NgbModule
 
   ],
@@ -54,6 +68,8 @@ import { ReviewService } from './services/review.service';
     PublisherService,
     RatingService,
     ReviewService,
+    NgbModalConfig,
+    NgbModal
 
   ],
   bootstrap: [AppComponent]

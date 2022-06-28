@@ -9,7 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,7 +31,15 @@ public class Order {
 	@Column(name = "billing_address")
 	private String address;
 	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 	
+
+	@ManyToMany
+	@JoinTable(name = "mod_has_order", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "mod_id"))
+	private List<Mod> mods;
+
 	public Order() {
 		super();
 	}
@@ -55,6 +66,43 @@ public class Order {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Mod> getMods() {
+		return mods;
+	}
+
+	public void setMods(List<Mod> mods) {
+		this.mods = mods;
+	}
+	
+	public void addMod(Mod mod) {
+
+		if (mods == null) {
+			mods = new ArrayList<>();
+		}
+
+		if (!mods.contains(mod)) {
+			mods.add(mod);
+			mod.addOrder(this);
+		}
+	}
+
+	public void removeMod(Mod mod) {
+
+		mod.setUser(null);
+		if (mods != null) {
+			mods.remove(mod);
+			mod.removeOrder(this);
+		}
 	}
 
 	@Override

@@ -17,14 +17,14 @@ import org.junit.jupiter.api.Test;
 class UserTest {
 
 	private static EntityManagerFactory emf;
-	
+
 	private EntityManager em;
-	
+
 	private User user;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		
+
 		emf = Persistence.createEntityManagerFactory("ModJPA");
 	}
 
@@ -38,7 +38,6 @@ class UserTest {
 		em = emf.createEntityManager();
 		user = em.find(User.class, 1);
 	}
-	
 
 	@AfterEach
 	void tearDown() throws Exception {
@@ -46,12 +45,12 @@ class UserTest {
 		user = null;
 	}
 
-	@Test	
+	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
 	}
-	
+
 	@Test
 	void test_User_Mod_mapping() {
 		assertNotNull(user);
@@ -59,7 +58,7 @@ class UserTest {
 		assertTrue(user.getMods().size() > 0);
 
 	}
-	
+
 	@Test
 	void test_User_ModMedia_mapping() {
 		assertNotNull(user);
@@ -68,6 +67,20 @@ class UserTest {
 
 	}
 
+	@Test
+	void test_User_Order_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getOrders());
+		assertTrue(user.getOrders().size() > 0);
 
+	}
+	
+	@Test
+	void test_User_Mod_ManyToMany_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getUserGroupMods());
+		assertTrue(user.getUserGroupMods().size() > 0);
+
+	}
 
 }

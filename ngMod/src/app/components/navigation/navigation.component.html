@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container-fluid">
-<a class="navbar-brand" href="#">Navbar scroll</a>
+<a class="navbar-brand" href="#">Mythic Mods</a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -12,28 +12,28 @@
     <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Home</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Mods</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Games</a>
+    <a class="nav-link" href="#" *ngIf="loggedIn()" [routerLink]="['/mod']">Mods</a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="#">Profile</a>
+    <a class="nav-link" href="#" *ngIf="loggedIn()">Profile</a>
   </li>
 </ul>
 <div class="d-flex align-items-center">
-  <button type="button" class="btn btn-link px-3 me-2" [routerLink]="['/login']">
+  <button type="button" class="btn btn-link px-3 me-2" [routerLink]="['/login']" *ngIf="! loggedIn()">
     Login
   </button>
-  <button type="button" class="btn btn-primary me-3" [routerLink]="['/register']">
+  <button type="button" class="btn btn-primary me-3" [routerLink]="['/register']" *ngIf="! loggedIn()">
     Sign up for free
   </button>
+
+    <div *ngIf="loggedIn()">
+      <app-logout></app-logout>
+    </div>
   <a
     class="btn btn-dark px-3"
     href="https://github.com/mdbootstrap/mdb-ui-kit"
-    role="button"
-    ><i class="fa fa-github"></i
+    role="button"><i class="fa fa-github"></i
   ></a>
 </div>
 
@@ -46,3 +46,8 @@
 
 
 </nav>
+
+
+
+
+
