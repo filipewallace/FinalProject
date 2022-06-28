@@ -48,7 +48,7 @@ class ModTest {
 	@Test
 	void test_Mod_entity_mapping() {
 		assertNotNull(mod);
-		assertEquals("Rani Saves the Princess", mod.getTitle());
+		assertEquals("Ranni Saves the Princess", mod.getTitle());
 	}
 
 	@Test
