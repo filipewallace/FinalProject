@@ -17,7 +17,7 @@ export class CategoryService {
     getHttpOption(){
       let option = {
         headers: {
-          Authorization: 'Basic' + this.auth.getCredentials(),
+          Authorization: 'Basic ' + this.auth.getCredentials(),
           'X-Requested-With': 'XMLHttpRequest'
         },
       };

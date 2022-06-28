@@ -54,7 +54,7 @@ export class AuthService {
       })
     );
   }
-
+ //Check user Role
   getLoggedInUser(): Observable<User> {
     if (! this.checkLogin()) {
       return throwError(

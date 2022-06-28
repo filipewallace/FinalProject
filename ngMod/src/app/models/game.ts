@@ -1,3 +1,5 @@
+import { Mods } from "./mods";
+
 export class Game {
   id: number;
   name: string | null;
@@ -8,12 +10,13 @@ export class Game {
   developer: number | null;
   publisher: number | null;
   platform: any[] | null;
+  mods: Mods[] | null;
 
 
 
   constructor(id: number=0, name:string='', multiplayer: boolean=false,
   description: string='', imageUrl: string='', category: any[] | null=null,
-  developer: number=0, publisher: number=0, platform: any[] | null = null){
+  developer: number=0, publisher: number=0, platform: any[] | null = null, mods: Mods[]|null=[]){
     this.id = id
     this.name = name
     this.description = description
@@ -23,6 +26,7 @@ export class Game {
     this.developer = developer
     this.publisher = publisher
     this.platform = platform
+    this.mods=mods
 
   }
 
