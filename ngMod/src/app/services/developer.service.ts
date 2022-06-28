@@ -26,7 +26,7 @@ export class DeveloperService {
 
 
     index(): Observable<Developer[]> {
-      return this.http.get<Developer[]>(this.url, this.getHttpOption()).pipe(
+      return this.http.get<Developer[]>(this.url).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(
