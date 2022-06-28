@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
   games: Game[] = [];
 
 
-  constructor(private gameServ: GameService, private route: ActivatedRoute, private router: Router) {
+  constructor(private gameServ: GameService, private auth: AuthService) {
 
    }
 
@@ -36,7 +37,9 @@ export class HomeComponent implements OnInit {
 
 
 
-
+  loggedIn(): boolean {
+    return this.auth.checkLogin();
+  }
 
 
 

@@ -1,5 +1,5 @@
 export class Mods {
-  id: number | null;
+  id: number ;
   title: string | null;
   description: string | null;
   version: string | null;
