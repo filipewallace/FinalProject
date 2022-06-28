@@ -99,6 +99,10 @@ public class GameController {
 
 	@DeleteMapping("games/{id}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
+		
+		
+		System.out.println("PRINCIPAL: "+ principal);
+		System.out.println("DELETING GAME: "+id);
 
 		try {
 			if (gameServ.destroyGame(id)) {
