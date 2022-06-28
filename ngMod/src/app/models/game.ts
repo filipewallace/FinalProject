@@ -1,7 +1,5 @@
-
-
 export class Game {
-  id: number | null;
+  id: number;
   name: string | null;
   multiplayer: boolean | false;
   description: string | null;

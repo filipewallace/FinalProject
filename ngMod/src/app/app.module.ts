@@ -24,6 +24,7 @@ import { RatingService } from './services/rating.service';
 import { ReviewService } from './services/review.service';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ModComponent } from './components/mod/mod.component';
+import { GameComponent } from './components/game/game.component';
 
 
 
@@ -39,6 +40,7 @@ import { ModComponent } from './components/mod/mod.component';
     ModprofileComponent,
     LogoutComponent,
     ModComponent,
+    GameComponent,
 
 
 
