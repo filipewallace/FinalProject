@@ -11,7 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { ModprofileComponent } from './components/modprofile/modprofile.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
 import { DeveloperService } from './services/developer.service';
@@ -23,8 +23,10 @@ import { PublisherService } from './services/publisher.service';
 import { RatingService } from './services/rating.service';
 import { ReviewService } from './services/review.service';
 import { LogoutComponent } from './components/logout/logout.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModComponent } from './components/mod/mod.component'
+import { ModComponent } from './components/mod/mod.component';
+
+
+
 
 
 @NgModule({
@@ -36,7 +38,12 @@ import { ModComponent } from './components/mod/mod.component'
     HomeComponent,
     ModprofileComponent,
     LogoutComponent,
-    ModComponent
+    ModComponent,
+
+
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,7 @@ import { ModComponent } from './components/mod/mod.component'
     FormsModule,
     NgbModule,
     BrowserModule,
-    BrowserAnimationsModule
+    NgbModule
 
   ],
 
@@ -61,6 +68,8 @@ import { ModComponent } from './components/mod/mod.component'
     PublisherService,
     RatingService,
     ReviewService,
+    NgbModalConfig,
+    NgbModal
 
   ],
   bootstrap: [AppComponent]
