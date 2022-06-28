@@ -55,6 +55,31 @@ export class AuthService {
     );
   }
 
+  getLoggedInUser(): Observable<User> {
+    if (! this.checkLogin()) {
+      return throwError(
+        () => { new Error('Not logged in.')}
+      )
+    }
+    let httpOptions = {
+      headers: {
+        Authorization: 'Basic ' + this.getCredentials(),
+        'X-Requested-with': 'XMLHttpRequest'
+      }
+    };
+    return this.http.get<User>(environment.baseUrl+'authenticate', httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error(
+              'UserService.getUserById(): error retrieving user: ' + err
+            )
+        );
+      })
+    );
+  }
+
   logout(): void {
     localStorage.removeItem('credentials');
   }
