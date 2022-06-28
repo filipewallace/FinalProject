@@ -54,7 +54,7 @@ class ReviewTest {
 	@DisplayName("testing review composite mapping between user and user")
 	void testing_job_skill_composite_mapping_between_skill_and_resume() {
 
-		assertNotNull(reviewTest1);
+		assertNotNull(reviewTest1); 
 
 		assertNotNull(reviewTest1.getUser().getReviews());
 		assertNotNull(reviewTest1.getMod().getReviews());
