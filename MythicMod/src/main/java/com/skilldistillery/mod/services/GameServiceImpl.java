@@ -72,6 +72,7 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public boolean destroyGame(int gameId) {
+		
 
 		gameRepo.deleteById(gameId);
 		boolean deleted = !gameRepo.existsById(gameId);

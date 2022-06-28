@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Game {
@@ -33,7 +34,7 @@ public class Game {
 	@Column(name = "img_url")
 	private String imageUrl;
 	
-
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "game_has_category", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private List<Category> categories;
@@ -54,7 +55,7 @@ public class Game {
 	@JoinColumn(name = "esrb_rating_id")
 	private EsrbRating rating;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"game"})
 	@OneToMany(mappedBy = "game")
 	private List<Mod> mods;
 
