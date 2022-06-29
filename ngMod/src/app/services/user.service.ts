@@ -26,7 +26,7 @@ export class UserService {
 
 
     index(): Observable<User[]> {
-      return this.http.get<User[]>(this.url, this.getHttpOption()).pipe(
+      return this.http.get<User[]>(this.url).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GameService } from 'src/app/services/game.service';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-game',
@@ -17,7 +18,7 @@ export class GameComponent implements OnInit {
   newGame: Game = new Game();
   currentRate = 0;
 
-  constructor(private gameSvc: GameService, private route: ActivatedRoute, private router: Router,config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(private gameSvc: GameService, private auth: AuthService,config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;
   }
@@ -80,6 +81,10 @@ export class GameComponent implements OnInit {
 
 open(content: any) {
   this.modalService.open(content);
+}
+
+isAdmin() : boolean {
+  return this.auth.isAdmin()
 }
 
 

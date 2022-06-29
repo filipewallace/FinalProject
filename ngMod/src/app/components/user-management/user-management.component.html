@@ -1,0 +1,94 @@
+<div class="container-xl">
+  <div class="table-responsive">
+      <div class="table-wrapper">
+          <div class="table-title">
+              <div class="row">
+                  <div class="col-sm-5">
+                      <h2>User <b>Management</b></h2>
+                  </div>
+                  <div class="col-sm-7">
+                      <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+                      <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
+                  </div>
+              </div>
+          </div>
+          <table class="table table-striped table-hover">
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Date Created</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let u of users">
+                      <td>{{u.id}}</td>
+                      <td>{{u.username}}</td>
+                      <td>{{u.dateCreated?.substring(0,10)}}</td>
+                      <td>{{u.role}}</td>
+                      <td><span [ngClass]="activeUsers(u) == 'Active' ? 'status text-success' : 'status text-danger' ">&bull;</span>{{activeUsers(u)}}</td>
+                      <td>
+                          <a  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons" (click)="open(user); editUser = u">&#xE8B8;</i></a>
+                          <a  *ngIf="u.enabled == 1"  class="delete" title="Delete" data-toggle="tooltip" (click)="u.enabled = 0"><i class="material-icons">&#xE5C9;</i></a>
+                          <a  *ngIf="u.enabled == 0" class="enable" title="enable" data-toggle="tooltip" (click)="u.enabled = 1"><i class="material-icons">&#xe7fe;</i></a>
+
+                      </td>
+                  </tr>
+
+
+
+
+              </tbody>
+          </table>
+          <div class="clearfix">
+
+
+          </div>
+      </div>
+  </div>
+
+
+
+
+</div>
+
+
+<ng-template #user let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit This user </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <form *ngIf="editUser != null">
+  <div class="modal-body">
+
+      <div class="mb-3">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" [(ngModel)]="editUser.username" >
+      </div>
+
+      <label for="role">Role</label>
+      <input type="text" class="text-area form-control" name="role"  [(ngModel)]="editUser.role">
+
+      <label for="email">email</label>
+      <input type="text" name="email" class="form-control" [(ngModel)]="editUser.email">
+
+      <label for="password">Password</label>
+      <input type="text" class="text-area form-control" name="password" [(ngModel)]="editUser.password"  >
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="updateUser(editUser)">Save</button>
+    </div>
+  </form>
+</ng-template>
+
+
+
+
+
+
+

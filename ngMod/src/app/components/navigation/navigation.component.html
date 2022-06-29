@@ -12,14 +12,14 @@
     <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Home</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#" *ngIf="loggedIn()" [routerLink]="['/mod']">Mods</a>
+    <a class="nav-link" href="#" *ngIf="loggedIn() " [routerLink]="['/mod']">Mods</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#" *ngIf="loggedIn()" [routerLink]="['/games']">Games</a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="#" *ngIf="loggedIn()">Profile</a>
+    <a class="nav-link" href="#" *ngIf="isAdmin() && loggedIn()" [routerLink]="['/users']">Profile</a>
   </li>
 </ul>
 <div class="d-flex align-items-center">
