@@ -25,6 +25,7 @@
             <h5 class="card-title"></h5>
             <div class="text-center my-4">
               <a href="#" class="btn btn-primary" [routerLink]="['/games/'+g.id]">View</a>
+
               <button class="btn btn-danger" (click)="deleteGame(g.id)" *ngIf="isAdmin()" >Delete</button>
               <a class="btn btn-warning" (click)="open(content); editGame=g" *ngIf="isAdmin()">Edit</a>
 
@@ -65,6 +66,7 @@
     </div>
   </form>
 </ng-template>
+
 
 <ng-template #content2 let-c="close" let-d="dismiss">
   <div class="modal-header">

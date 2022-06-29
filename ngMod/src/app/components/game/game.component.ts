@@ -177,6 +177,7 @@ export class GameComponent implements OnInit {
     });
   }
 
+
 isAdmin() : boolean {
   return this.auth.isAdmin()
 }
