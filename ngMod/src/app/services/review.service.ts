@@ -5,13 +5,16 @@ import { environment } from 'src/environments/environment';
 import { Platform } from '../models/platform';
 import { Review } from '../models/review';
 import { AuthService } from './auth.service';
+import { Mods } from './../models/mods';
+import { Game } from '../models/game';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReviewService {
 
-  private url = environment.baseUrl + 'api/FixMe'
+  private url = environment.baseUrl + 'api/review'
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
@@ -25,9 +28,9 @@ export class ReviewService {
       return option;
     }
 
-
-    index(): Observable<Review[]> {
-      return this.http.get<Review[]>(this.url, this.getHttpOption()).pipe(
+   //list reviews by the user id
+    indexReviewByUser(id:number): Observable<Review[]> {
+      return this.http.get<Review[]>(this.url+"/"+id+"/user", this.getHttpOption()).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(
@@ -37,9 +40,21 @@ export class ReviewService {
       );
     }
 
+    //list reviews by the mod id
+    indexReviewByMod(id:number): Observable<Review[]> {
+      return this.http.get<Review[]>(this.url+"/"+id+"/mod", this.getHttpOption()).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error("ReviewService.index(): Error returning a Review" + err)
+          )
+        })
+      );
+    }
 
+  //send in mod id
     destroy(id: number): Observable<Review>{
-      return this.http.delete<Review>(this.url+'/'+id, this.getHttpOption()).pipe(
+      return this.http.delete<Review>(this.url+"/"+id+"/mod", this.getHttpOption()).pipe(
         catchError ((err: any) => {
           console.log(err);
           return throwError(
@@ -49,9 +64,9 @@ export class ReviewService {
       );
     };
 
-
+    // send in mod id
     show(id: number): Observable<Review>{
-      return this.http.get<Review>(this.url+"/"+id, this.getHttpOption()).pipe(
+      return this.http.get<Review>(this.url+"/"+id+"/mod", this.getHttpOption()).pipe(
         catchError ((err: any) => {
           console.log(err);
           return throwError(
@@ -61,10 +76,10 @@ export class ReviewService {
       )
     };
 
+    // send in mod id
+    update(reviewUpdates: Review): Observable<Review>{
 
-    update(platformUpdates: Review): Observable<Review>{
-
-        return this.http.put<Review>(this.url+"/"+platformUpdates.id, platformUpdates, this.getHttpOption()).pipe(
+        return this.http.put<Review>(this.url+"/"+reviewUpdates.id, reviewUpdates, this.getHttpOption()).pipe(
           catchError ((err: any) => {
             console.log(err);
             return throwError(
@@ -75,12 +90,12 @@ export class ReviewService {
     };
 
 
-    create(platform: Platform): Observable<Platform> {
-      return this.http.post<Platform>(this.url, platform, this.getHttpOption()).pipe(
+    create(review: Review, id: number): Observable<Platform> {
+      return this.http.post<Platform>(this.url+"/"+id+"/user", review, this.getHttpOption()).pipe(
         catchError((err: any) => {
           console.error(err);
           return throwError(
-            () => new Error('PlatformService.create(): error creating Platform:' + err)
+            () => new Error('ReviewService.create(): error creating Review:' + err)
           )
         })
       )
