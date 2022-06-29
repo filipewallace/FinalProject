@@ -9,6 +9,7 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { Game } from 'src/app/models/game';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mod',
