@@ -26,7 +26,7 @@ export class ModComponent implements OnInit {
   currentUser: null | User = null;
   games: Game[] =[];
 
-  constructor(private modSvc: ModService,config: NgbModalConfig, private modalService: NgbModal, private auth: AuthService, private gameSvc: GameService ) {
+  constructor(private modSvc: ModService,config: NgbModalConfig, private modalService: NgbModal, private auth: AuthService, private gameSvc: GameService, private user: UserService ) {
     config.backdrop = 'static';
     config.keyboard = false;
 
@@ -61,6 +61,20 @@ export class ModComponent implements OnInit {
           }
         }
       );
+
+
+      this.auth.getLoggedInUser().subscribe({
+        next: (user) => {
+          console.log(user)
+          this.newMod.user = user;
+        },
+        error: (problem) => {
+          console.error("ModHttpComponent.reload(): error loading Mods: ");
+          console.error(problem);
+
+        }
+
+      })
 
 
 

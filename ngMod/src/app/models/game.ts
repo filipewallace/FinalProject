@@ -12,17 +12,17 @@ export class Game {
   description: string | null;
   imageUrl: string | null;
   category: Category[] | null;
-  developer: Developer | null;
-  publisher: Publisher | null;
-  platform: Platform[] | null;
+  developer: Developer;
+  publisher: Publisher;
+  platform: Platform;
   mods: Mods[] | null;
-  rating: Rating | null;
+  rating: Rating;
 
 
 
   constructor(id: number=0, name:string='', multiplayer: boolean=false,
-  description: string='', imageUrl: string='', category: any[] | null=[],
-  developer: any=0, publisher: any=1, platform: any[] | null = [], rating: any=0, mods: Mods[]|null=[]){
+  description: string='', imageUrl: string='', category: Category[] | null=[],
+  developer: Developer=new Developer(), publisher: Publisher=new Publisher(), platform: Platform=new Platform(), rating:Rating=new Rating(), mods: Mods[]|null=[]){
     this.id = id;
     this.name = name;
     this.description = description;

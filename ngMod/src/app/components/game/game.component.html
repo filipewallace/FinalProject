@@ -89,22 +89,34 @@
       <input type="text" class="text-area form-control" name="imageUrl" [(ngModel)]="newGame.imageUrl" >
 
       <label for="developer"> Developer</label>
-      <input type="number" class="form-control" name="developer" [(ngModel)]="newGame.developer" >
+      <select name="developer.id" id="" [(ngModel)]="newGame.developer.id">
+        <option value="{{d.id}}" *ngFor="let d of developers">{{d.name}}</option>
+      </select>
 
       <label for="publisher"> Publisher</label>
-      <input type="number" class="form-control" name="publisher" [(ngModel)]="newGame.publisher" >
+      <select name="publisher.id" id="" [(ngModel)]="newGame.publisher.id">
+        <option value="{{p.id}}" *ngFor="let p of publishers">{{p.name}}</option>
+      </select>
 
       <label for="rating"> Rating</label>
-      <input type="number" class="form-control" name="rating" [(ngModel)]="newGame.rating" >
+      <select name="rating.id" id="" [(ngModel)]="newGame.rating.id">
+        <option value="{{r.id}}" *ngFor="let r of rating">{{r.name}}</option>
+      </select>
 
       <label for="platform"> Platform</label>
-      <input type="number" class="form-control" name="platform" [(ngModel)]="newGame.platform" >
+      <select name="platform.id" id="" [(ngModel)]="newGame.platform.id">
+        <option value="{{p.id}}" *ngFor="let p of platforms">{{p.name}}</option>
+      </select>
 
       <!-- <label for="mods"> Mods</label>
-      <input type="text" class="form-control" name="mods" [(ngModel)]="newGame.mods" >
+       <select name="" id="" [(ngModel)]="newGame.platform.id">
+        <option value="{{p.id}}" *ngFor="let p of platforms">{{p.name}}</option>
+      </select>
 
       <label for="category"> Category</label>
-      <input type="text" class="form-control" name="category" [(ngModel)]="newGame.category" > -->
+      < <select name="" id="" [(ngModel)]="newGame.platform.id">
+        <option value="{{p.id}}" *ngFor="let p of platforms">{{p.name}}</option>
+      </select>-->
 
     </div>
     <div class="modal-footer">
@@ -112,5 +124,3 @@
     </div>
   </form>
 </ng-template>
-
-
