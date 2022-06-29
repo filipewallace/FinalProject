@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GameService } from 'src/app/services/game.service';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs';9
 import { Mods } from 'src/app/models/mods';
 import { Call } from '@angular/compiler';
 
