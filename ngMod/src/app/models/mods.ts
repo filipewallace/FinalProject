@@ -1,7 +1,7 @@
 import { User } from 'src/app/models/user';
 import { Game } from 'src/app/models/game';
 export class Mods {
-  id: number ;
+  id: number;
   title: string | null;
   description: string | null;
   version: string | null;

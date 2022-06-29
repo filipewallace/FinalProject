@@ -48,7 +48,8 @@ export class GameComponent implements OnInit {
     private platformSvc: PlatformService,
     private ratingSvc: RatingService,
     private categorySrv: CategoryService,
-    private modSrv: ModService
+    private modSrv: ModService,
+    private auth: AuthService
   ) {
 
     config.backdrop = 'static';

@@ -10,7 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 
-import { ModprofileComponent } from './components/modprofile/modprofile.component';
+import { ModProfileComponent } from './components/modprofile/modprofile.component';
 import { NgbModal, NgbModalConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
@@ -41,7 +41,7 @@ import { ActiveUserPipe } from './pipes/active-user.pipe';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ModprofileComponent,
+    ModProfileComponent,
     LogoutComponent,
     ModComponent,
     GameComponent,

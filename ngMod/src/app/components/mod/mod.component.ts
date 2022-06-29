@@ -1,5 +1,5 @@
 import { GameService } from 'src/app/services/game.service';
-
+import { ModProfileComponent } from '../modprofile/modprofile.component';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -26,7 +26,14 @@ export class ModComponent implements OnInit {
   currentUser: null | User = null;
   games: Game[] =[];
 
-  constructor(private modSvc: ModService,config: NgbModalConfig, private modalService: NgbModal, private auth: AuthService, private gameSvc: GameService ) {
+  constructor(
+    private modSvc: ModService,
+    config: NgbModalConfig,
+    private modalService: NgbModal,
+    private auth: AuthService,
+    private gameSvc: GameService,
+    private route: ActivatedRoute,
+    private router: Router ) {
     config.backdrop = 'static';
     config.keyboard = false;
 
