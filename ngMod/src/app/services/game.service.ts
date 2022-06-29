@@ -75,6 +75,11 @@ export class GameService {
 
 
     create(game: Game): Observable<Game> {
+
+
+
+      console.log(game);
+
       return this.http.post<Game>(this.url, game, this.getHttpOption()).pipe(
         catchError((err: any) => {
           console.error(err);

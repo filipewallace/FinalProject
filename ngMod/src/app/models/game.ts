@@ -1,3 +1,8 @@
+import { Rating } from './rating';
+import { Platform } from './platform';
+import { Publisher } from './publisher';
+import { Category } from './category';
+import { Developer } from './developer';
 import { Mods } from "./mods";
 
 export class Game {
@@ -6,27 +11,29 @@ export class Game {
   multiplayer: boolean | false;
   description: string | null;
   imageUrl: string | null;
-  category: any[] | null;
-  developer: number | null;
-  publisher: number | null;
-  platform: any[] | null;
+  category: Category[] | null;
+  developer: Developer | null;
+  publisher: Publisher | null;
+  platform: Platform[] | null;
   mods: Mods[] | null;
+  rating: Rating | null;
 
 
 
   constructor(id: number=0, name:string='', multiplayer: boolean=false,
-  description: string='', imageUrl: string='', category: any[] | null=null,
-  developer: number=0, publisher: number=0, platform: any[] | null = null, mods: Mods[]|null=[]){
-    this.id = id
-    this.name = name
-    this.description = description
-    this.multiplayer = multiplayer
-    this.imageUrl = imageUrl
-    this.category = category
-    this.developer = developer
-    this.publisher = publisher
-    this.platform = platform
-    this.mods=mods
+  description: string='', imageUrl: string='', category: any[] | null=[],
+  developer: any=0, publisher: any=1, platform: any[] | null = [], rating: any=0, mods: Mods[]|null=[]){
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.multiplayer = multiplayer;
+    this.imageUrl = imageUrl;
+    this.developer = developer;
+    this.publisher = publisher;
+    this.platform = platform;
+    this.rating=rating;
+    this.category = category;
+    this.mods=mods;
 
   }
 

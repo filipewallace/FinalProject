@@ -34,7 +34,7 @@ public class Game {
 	@Column(name = "img_url")
 	private String imageUrl;
 	
-	@JsonIgnore
+	
 	@ManyToMany
 	@JoinTable(name = "game_has_category", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private List<Category> categories;
@@ -43,6 +43,7 @@ public class Game {
 	@JoinColumn(name = "developer_id")
 	private Developer dev;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "publisher_id")
 	private Publisher publisher;
@@ -50,7 +51,8 @@ public class Game {
 	@ManyToOne
 	@JoinColumn(name = "platform_id")
 	private Platform platform;
-
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "esrb_rating_id")
 	private EsrbRating rating;
