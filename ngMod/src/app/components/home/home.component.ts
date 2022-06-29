@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
   games: Game[] = [];
 
 
+
+
   constructor(private gameServ: GameService, private auth: AuthService) {
 
    }
