@@ -27,6 +27,7 @@ public class ModController {
 
 	@Autowired
 	private ModService modServ;
+	
 
 	@GetMapping("/mods/{id}")
 	public Mod findModById(@PathVariable Integer id, HttpServletResponse res) {
@@ -113,12 +114,12 @@ public class ModController {
 
 	}
 
-	@GetMapping("mods/{userId}/user")
-	public List<Mod> showModsByUser(@PathVariable int userId, HttpServletRequest req, HttpServletResponse res,
+	@GetMapping("mods/user")
+	public List<Mod> showModsByUser(HttpServletRequest req, HttpServletResponse res,
 			Principal principal) {
 
 		try {
-			List<Mod> mods = modServ.getModsByUser(userId);
+			List<Mod> mods = modServ.getModsByUser(principal.getName());
 			if (mods == null) {
 				res.setStatus(404);
 			}

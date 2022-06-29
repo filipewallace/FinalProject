@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'games/:id', component: GameProfileComponent },
   {path: 'users', component: UserManagementComponent },
   {path: 'mod/:id', component: ModProfileComponent},
-  {path: 'mod/:id/user', component: UserModsComponent}
+  {path: 'user', component: UserModsComponent}
 
 
 
