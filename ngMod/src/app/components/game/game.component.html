@@ -4,6 +4,9 @@
     class="container-fluid bg-trasparent my-4 p-3"
     style="position: relative"
   >
+
+  <button class="btn btn-primary" (click)="open(content2); newGame">Add New Game</button>
+
     <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
       <div class="col" *ngFor="let g of games" >
         <div class="card h-100 shadow-sm">
@@ -59,6 +62,53 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="updateGame(editGame)">Save</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #content2 let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Game </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <form *ngIf="newGame != null">
+  <div class="modal-body">
+
+      <div class="mb-3">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="newGame.name">
+      </div>
+
+      <label for="description">Description</label>
+      <input type="text" class="text-area form-control" name="description"  [(ngModel)]="newGame.description">
+
+      <label for="version">Multiplayer</label>
+      <input type="text" name="multiplayer" class="form-control" name="multiplayer" [(ngModel)]="newGame.multiplayer">
+
+      <label for="imageUrl"> Image Url</label>
+      <input type="text" class="text-area form-control" name="imageUrl" [(ngModel)]="newGame.imageUrl" >
+
+      <label for="developer"> Developer</label>
+      <input type="number" class="form-control" name="developer" [(ngModel)]="newGame.developer" >
+
+      <label for="publisher"> Publisher</label>
+      <input type="number" class="form-control" name="publisher" [(ngModel)]="newGame.publisher" >
+
+      <label for="rating"> Rating</label>
+      <input type="number" class="form-control" name="rating" [(ngModel)]="newGame.rating" >
+
+      <label for="platform"> Platform</label>
+      <input type="number" class="form-control" name="platform" [(ngModel)]="newGame.platform" >
+
+      <!-- <label for="mods"> Mods</label>
+      <input type="text" class="form-control" name="mods" [(ngModel)]="newGame.mods" >
+
+      <label for="category"> Category</label>
+      <input type="text" class="form-control" name="category" [(ngModel)]="newGame.category" > -->
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="addGame(newGame)">Save</button>
     </div>
   </form>
 </ng-template>

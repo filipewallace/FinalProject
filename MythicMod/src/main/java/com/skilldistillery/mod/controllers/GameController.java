@@ -57,9 +57,9 @@ public class GameController {
 	}
 
 	@PostMapping("games")
-	public Game createNewGame(HttpServletRequest req, HttpServletResponse res, @RequestBody Game game,
+	public Game createNewGame(@RequestBody Game game,HttpServletRequest req, HttpServletResponse res, 
 			Principal principal) {
-
+System.out.println("CREATE NEW GAME CONTROLLER");
 		try {
 			game = gameServ.createGame(game);
 			if (game == null) {
