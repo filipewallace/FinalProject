@@ -24,7 +24,11 @@ export class UserModsComponent implements OnInit {
 
 
   reload():void {
-    this.modSvc.index().subscribe(
+
+    if(this.newMod.user.id != null){
+
+
+      this.modSvc.userMods().subscribe(
       {
         next: (mod) => {
           console.log(mod)
@@ -66,12 +70,17 @@ export class UserModsComponent implements OnInit {
 
       })
 
+    }
 
 
-  };
+    };
+
+
+
 
 
   ngOnInit(): void {
+    this.reload();
   }
 
 }

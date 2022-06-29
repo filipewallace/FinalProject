@@ -14,6 +14,8 @@ public interface ModRepository extends JpaRepository<Mod, Integer> {
 	
 	Mod queryById(int id);
 	
+	List<Mod> findByUser_Username(String username);
+	
 	List <Mod> findByUser_Id(Integer userId);
 	
 	List <Mod> findByGame_Id(Integer gameId);
