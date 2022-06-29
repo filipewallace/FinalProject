@@ -32,12 +32,12 @@ main {
 }
 
 #sidebar2 {
-  background-color: red;
+  /* background-color: red; */
   grid-area:sidebar2;
 }
 
 #content1 {
-  background-color: #73ffba;
+  background-color: #f3f9f6;
   grid-area:content1;
 }
 #content2 {
@@ -62,7 +62,7 @@ main {
 
 
 footer {
-  background-color: purple;
+  background-color: rgb(195, 186, 195);
   grid-area:footer;
 }
 

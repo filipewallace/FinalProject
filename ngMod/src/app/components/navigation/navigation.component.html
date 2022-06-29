@@ -21,7 +21,13 @@
   <li class="nav-item">
     <a class="nav-link" href="#" *ngIf="isAdmin() && loggedIn()" [routerLink]="['/users']">Profile</a>
   </li>
+
+
+<li class="nav-item">
+  <a class="nav-link" href="#" *ngIf="loggedIn()" [routerLink]="['/user']">My Mods</a>
+</li>
 </ul>
+
 <div class="d-flex align-items-center">
   <button type="button" class="btn btn-link px-3 me-2" [routerLink]="['/login']" *ngIf="! loggedIn()">
     Login
@@ -35,7 +41,7 @@
     </div>
   <a
     class="btn btn-dark px-3"
-    href="https://github.com/mdbootstrap/mdb-ui-kit"
+    href="https://github.com/filipewallace/FinalProject"
     role="button"><i class="fa fa-github"></i
   ></a>
 </div>
