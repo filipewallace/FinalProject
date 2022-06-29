@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GameService } from 'src/app/services/game.service';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { Platform } from 'src/app/models/platform';
 import { Category } from 'src/app/models/category';
 import { DeveloperService } from 'src/app/services/developer.service';
@@ -34,6 +35,7 @@ export class GameComponent implements OnInit {
   categories: Category[] = [];
   mods: Mods[] = [];
 
+
   constructor(
     private gameSvc: GameService,
     private route: ActivatedRoute,
@@ -48,6 +50,7 @@ export class GameComponent implements OnInit {
     private categorySrv: CategoryService,
     private modSrv: ModService
   ) {
+
     config.backdrop = 'static';
     config.keyboard = false;
   }
@@ -168,6 +171,11 @@ export class GameComponent implements OnInit {
       },
     });
   }
+
+
+isAdmin() : boolean {
+  return this.auth.isAdmin()
+}
 
   open(content: any) {
     this.modalService.open(content);
