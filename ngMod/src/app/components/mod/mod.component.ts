@@ -1,9 +1,6 @@
 import { Review } from 'src/app/models/review';
 import { ReviewService } from './../../services/review.service';
 import { GameService } from 'src/app/services/game.service';
-import { ModProfileComponent } from '../modprofile/modprofile.component';
-import { Observable } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Mods } from 'src/app/models/mods';
 import { ModService } from 'src/app/services/mod.service';
@@ -12,6 +9,7 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { Game } from 'src/app/models/game';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mod',
