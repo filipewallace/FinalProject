@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { GameComponent } from './components/game/game.component';
+import { UserModsComponent } from './components/user-mods/user-mods.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   {path: 'games/:id', component: GameProfileComponent },
   {path: 'users', component: UserManagementComponent },
-  {path: 'mod/:id', component: ModProfileComponent}
+  {path: 'mod/:id', component: ModProfileComponent},
+  {path: 'mod/:id/user', component: UserModsComponent}
 
 
 ];
