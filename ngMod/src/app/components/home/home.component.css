@@ -27,7 +27,7 @@ main {
 }
 
 #sidebar {
-  background-color: #18ffff;
+  /* background-color: #18ffff; */
   grid-area:sidebar;
 }
 

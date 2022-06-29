@@ -1,7 +1,4 @@
 import { GameService } from 'src/app/services/game.service';
-import { ModProfileComponent } from '../modprofile/modprofile.component';
-import { Observable } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Mods } from 'src/app/models/mods';
 import { ModService } from 'src/app/services/mod.service';
