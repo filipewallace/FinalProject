@@ -1,3 +1,4 @@
+import { ModProfileComponent } from './components/modprofile/modprofile.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { GameProfileComponent } from './components/game-profile/game-profile.component';
 import { ModComponent } from './components/mod/mod.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
   {path: 'games/:id', component: GameProfileComponent },
-  {path: 'users', component: UserManagementComponent }
+  {path: 'users', component: UserManagementComponent },
+  {path: 'mod/:id', component: ModProfileComponent}
 
 
 ];
