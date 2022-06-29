@@ -85,6 +85,16 @@ export class ModService {
       )
     }
 
+    userMods(id: number): Observable<Mods[]> {
+      return this.http.get<Mods[]>(this.url +'/'+ id + '/' + 'user').pipe(
+        catchError ((err: any) => {
+          console.error(err);
+          return throwError(
+            () => new Error('ModService.userMods(): error returning user mods')
+          )
+        })
+      )
+    };
 
 
 

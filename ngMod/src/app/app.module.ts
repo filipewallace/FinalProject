@@ -29,6 +29,7 @@ import { GameProfileComponent } from './components/game-profile/game-profile.com
 import { GameModsPipe } from './pipes/game-mods.pipe';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { ActiveUserPipe } from './pipes/active-user.pipe';
+import { UserModsComponent } from './components/user-mods/user-mods.component';
 
 
 
@@ -49,6 +50,7 @@ import { ActiveUserPipe } from './pipes/active-user.pipe';
     GameModsPipe,
     UserManagementComponent,
     ActiveUserPipe,
+    UserModsComponent
 
 
 
