@@ -20,6 +20,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "game_mod")
@@ -69,7 +70,7 @@ public class Mod {
 	@OneToMany(mappedBy = "mod")
 	private List<Post> posts;
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"mod"})
 	@OneToMany(mappedBy = "mod")
 	private List<Review> reviews;
 
