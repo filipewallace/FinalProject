@@ -84,12 +84,11 @@ public class ModServiceImpl implements ModService {
 
 	// FIND ALL MODS WITH USER ID
 	@Override
-	public List<Mod> getModsByUser(Integer userId) {
+	public List<Mod> getModsByUser(String username) {
 
-		if (!modRepo.existsById(userId)) {
-			return null;
-		}
-		return modRepo.findByUser_Id(userId);
+		
+			
+		return modRepo.findByUser_Username(username);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public interface ModService {
 
 	public boolean destroyMod(int modId);
 	
-	public List<Mod> getModsByUser(Integer userId);
+	public List<Mod> getModsByUser(String username);
 	
 	public List<Mod> getModsByGame(Integer gameId);
 
