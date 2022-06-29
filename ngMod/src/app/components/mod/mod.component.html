@@ -25,7 +25,7 @@
             <div class="text-center my-4">
               <a href="#" class="btn btn-primary" [routerLink]="['/mod']">view</a>
               <button class="btn btn-danger" (click)="deleteMod(m.id)" *ngIf="isAdmin() === true;">Delete</button>
-              <a class="btn btn-warning" (click)="open(content); editMod=m" *ngIf="isAdmin()">Edit</a>
+              <a class="btn btn-warning" (click)="open(content); editMod=m" *ngIf="isAdmin() && m.user.id == m.id">Edit</a>
 
 
             </div>
