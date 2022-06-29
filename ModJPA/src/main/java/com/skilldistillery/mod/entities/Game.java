@@ -55,7 +55,7 @@ public class Game {
 	
 	@ManyToOne
 	@JoinColumn(name = "esrb_rating_id")
-	private EsrbRating rating;
+	private EsrbRating rating; 
 	
 	@JsonIgnoreProperties(value={"game"}, allowSetters=true)
 	@OneToMany(mappedBy = "game")

@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GameService } from 'src/app/services/game.service';
 import { Observable } from 'rxjs';
+
 import { AuthService } from 'src/app/services/auth.service';
 import { Platform } from 'src/app/models/platform';
 import { Category } from 'src/app/models/category';
@@ -17,6 +18,7 @@ import { DeveloperService } from 'src/app/services/developer.service';
 import { PublisherService } from 'src/app/services/publisher.service';
 import { RatingService } from 'src/app/services/rating.service';
 import { Mods } from 'src/app/models/mods';
+
 
 @Component({
   selector: 'app-game',
@@ -34,6 +36,8 @@ export class GameComponent implements OnInit {
   rating: Rating[] = [];
   categories: Category[] = [];
   mods: Mods[] = [];
+
+
 
 
   constructor(

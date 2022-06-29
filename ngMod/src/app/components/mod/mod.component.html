@@ -4,7 +4,7 @@
     class="container-fluid bg-trasparent my-4 p-3"
     style="position: relative"
   >
-  <a class="btn btn-warning" (click)="open(add); " *ngIf="isAdmin()">Add Mod</a>
+  <a class="btn btn-warning" (click)="open(add); " >Add Mod</a>
   <hr>
     <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
       <div class="col" *ngFor="let m of mods;" >
@@ -106,7 +106,7 @@
       <label for="price">Price</label>
       <input type="number" name="price" class="form-control"  [(ngModel)]="newMod.price">
 
-        <select name="" id="" [(ngModel)]="newMod.game.id">
+        <select name="game.id" id="" [(ngModel)]="newMod.game.id">
           <option value="{{g.id}}" *ngFor="let g of games">{{g.name}}</option>
         </select>
 
