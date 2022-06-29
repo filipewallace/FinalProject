@@ -28,7 +28,7 @@ public class Publisher {
 	@Column(name = "web_link")
 	private String webLink;
 
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "publisher")
 	private List<Game> games;
 
@@ -43,7 +43,7 @@ public class Publisher {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+ 
 	public String getName() {
 		return name;
 	}

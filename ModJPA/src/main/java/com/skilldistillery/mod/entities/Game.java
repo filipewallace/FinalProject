@@ -43,7 +43,7 @@ public class Game {
 	@JoinColumn(name = "developer_id")
 	private Developer dev;
 
-	@JsonIgnore
+	@JsonIgnoreProperties(value={"games"}, allowSetters=true)
 	@ManyToOne
 	@JoinColumn(name = "publisher_id")
 	private Publisher publisher;
@@ -57,7 +57,7 @@ public class Game {
 	@JoinColumn(name = "esrb_rating_id")
 	private EsrbRating rating;
 	
-	@JsonIgnoreProperties({"game"})
+	@JsonIgnoreProperties(value={"game"}, allowSetters=true)
 	@OneToMany(mappedBy = "game")
 	private List<Mod> mods;
 
@@ -122,6 +122,14 @@ public class Game {
 	}
 
 	public Developer getDev() {
+		return dev;
+	}
+
+	public void setDeveloper(Developer dev) {
+		this.dev = dev;
+	}
+	
+	public Developer getDeveloper() {
 		return dev;
 	}
 
