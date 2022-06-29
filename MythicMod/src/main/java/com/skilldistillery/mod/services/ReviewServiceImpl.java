@@ -80,7 +80,7 @@ public class ReviewServiceImpl implements ReviewService {
 		for (Review review : reviewList) {
 			if (review.getMod().getId() == reviewId) {
 				modReviews.add(review);
-
+				System.out.println(review);
 			}
 
 		}

@@ -1,5 +1,6 @@
 import { User } from 'src/app/models/user';
 import { Game } from 'src/app/models/game';
+import { Review } from './review';
 export class Mods {
   id: number;
   title: string | null;
@@ -11,11 +12,12 @@ export class Mods {
   downloadLink: string | null;
   game: Game;
   user: User;
+  reviews: Review[] | null;
 
 
   constructor(id: number=0, title : string="", description:string="",
   version: string="", requirments: string="", imgUrl: string="", price: number=0, downloadLink: string="",
-  game: Game = new Game() , user: User = new User()){
+  game: Game = new Game() , user: User = new User(), reviews: Review[]|null=[]){
   this.id = id;
   this.title = title;
   this.description = description;
@@ -26,6 +28,7 @@ export class Mods {
   this.downloadLink = downloadLink;
   this.game = game;
   this.user = user;
+  this.reviews=reviews;
 
   }
 

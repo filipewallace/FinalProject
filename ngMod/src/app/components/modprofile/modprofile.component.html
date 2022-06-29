@@ -3,3 +3,14 @@
 <h5>{{mod.description}}</h5>
 <img [src]='mod.imageUrl'>
 
+<h5>Mod Reviews</h5>
+<hr>
+<div class="col" *ngFor="let r of mod.reviews" >
+  <h5>{{r.opinion}}</h5>
+  <h5>{{r.score}}</h5>
+  <h5>{{r.mod}}</h5>
+  <h5>{{r.user.username}}</h5>
+  <hr>
+</div>
+
+

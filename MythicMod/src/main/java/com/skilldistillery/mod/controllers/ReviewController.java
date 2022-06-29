@@ -32,6 +32,7 @@ public class ReviewController {
 	//
 	@GetMapping("review/{modReviewId}/mod")
 	public List<Review> modReviews(@PathVariable Integer modReviewId, HttpServletResponse res){
+		
 		System.out.println("REVIEW ID:"+modReviewId);
 		
 		List<Review> userReviews = reviewServ.listModReviews(modReviewId);
