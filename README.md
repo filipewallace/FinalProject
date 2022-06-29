@@ -2,12 +2,12 @@
 
 Skill Distillery Angular Final Project
 
-## Team: Fallen Mastodon
+## Team: Mythic Cupcake
 
-* [Henry Melendez (Developer, DBA)](https://github.com/Henrymelendez)
-* [JD Hufstetler (Developer, Scrum Master)](https://github.com/jdhuf)
-* [Filipe Souza (Developer, Repo Owner)](https://github.com/filipewallace)
-* [Nathan Hafley (Developer)](https://github.com/Nateomancer)
+* [Henry Melendez](https://github.com/Henrymelendez)
+* [JD Hufstetler](https://github.com/jdhuf)
+* [Filipe Souza ](https://github.com/filipewallace)
+* [Nathan Hafley](https://github.com/Nateomancer)
 
 
 ### Description
