@@ -20,7 +20,7 @@ nav {
 }
 
 main {
-  background-color: #84ffff;
+  /* background-color: #84ffff; */
   grid-area:main;
 
 
@@ -64,7 +64,7 @@ main {
 
 
 footer {
-  background-color: rgb(195, 186, 195);
+  background-color: white;
   grid-area:footer;
 }
 
