@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/app/models/game';
 import { GameService } from 'src/app/services/game.service';
+import { Mods } from 'src/app/models/mods';
 
 @Component({
   selector: 'app-gameveiw',
@@ -15,7 +16,8 @@ export class GameveiwComponent implements OnInit {
   constructor(private route: ActivatedRoute, private gameSvc: GameService, private reviewSvc: ReviewService) { }
   game: Game = new Game();
   reviews: Review = new Review();
-
+  title = 'Mod Details';
+  selected: null | Mods = null;
 
   reload(id:number): void {
     this.gameSvc.show(id).subscribe({

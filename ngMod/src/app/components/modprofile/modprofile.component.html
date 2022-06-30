@@ -1,16 +1,32 @@
-<h2>{{mod.title}}</h2>
+<div class="form-control" style="text-align: center">
+  <h2>{{mod.title}}</h2>
+  <h5>{{mod.description}}</h5><br />
+  <img  [src]='mod.imageUrl'><br /><br />
+  </div><br />
+  <h5 class="btn-outline-dark" style="text-align: center">Reviews</h5>
 
-<h5>{{mod.description}}</h5>
-<img [src]='mod.imageUrl'>
 
-<h5>Mod Reviews</h5>
-<hr>
-<div class="col" *ngFor="let r of mod.reviews" >
-  <h5>{{r.opinion}}</h5>
-  <h5>{{r.score}}</h5>
-  <h5>{{r.mod}}</h5>
-  <h5>{{r.user.username}}</h5>
   <hr>
-</div>
+
+  <div id="table">
+    <table class="table table-striped table-hover" *ngIf="!selected">
+      <thead class="table-dark">
+          <tr>
+            <th>Comment</th>
+            <th>Rating</th>
+            <th>User</th>
+
+           </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of mod.reviews">
+
+          <td >{{r.opinion}}</td>
+          <td >{{r.score}} out of 5</td>
+          <td >{{r.user.username}}</td>
+
+        </tr>
+      </tbody>
+    </table>
 
 
