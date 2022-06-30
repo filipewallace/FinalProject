@@ -32,8 +32,8 @@
                       <td><span [ngClass]="activeUsers(u) == 'Active' ? 'status text-success' : 'status text-danger' ">&bull;</span>{{activeUsers(u)}}</td>
                       <td>
                           <a  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons" (click)="open(user); editUser = u">&#xE8B8;</i></a>
-                          <a  *ngIf="u.enabled == 1"  class="delete" title="Delete" data-toggle="tooltip" (click)="u.enabled = 0"><i class="material-icons">&#xE5C9;</i></a>
-                          <a  *ngIf="u.enabled == 0" class="enable" title="enable" data-toggle="tooltip" (click)="u.enabled = 1"><i class="material-icons">&#xe7fe;</i></a>
+                          <a  *ngIf="u.enabled == 1"  class="delete" title="Delete" data-toggle="tooltip" (click)="enableUser(u)"><i class="material-icons">&#xE5C9;</i></a>
+                          <a   *ngIf="u.enabled == 0" class="enable" title="enable" data-toggle="tooltip" (ckick)="enableUser(u)" ><i class="material-icons">&#xe7fe;</i></a>
 
                       </td>
                   </tr>

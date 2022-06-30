@@ -62,6 +62,23 @@ export class UserManagementComponent implements OnInit {
     this.editUser = null;
 }
 
+
+
+enableUser(user: User): void {
+  if(user != null){
+
+  if(user.enabled == 1){
+    user.enabled = 0;
+    this.updateUser(user);
+  }
+
+  else{
+    user.id = 1;
+    this.updateUser(user);
+  }
+}
+}
+
 open(content: any) {
   this.modalService.open(content);
 }
