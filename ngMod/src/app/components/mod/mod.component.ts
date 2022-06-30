@@ -111,8 +111,8 @@ loadReviews(id:number): void {
   addMod(mod: Mods): void {
     this.modSvc.create(mod).subscribe({
       next: (result) => {
-        this.newMod = new Mods();
         this.reload();
+        this.newMod = new Mods();
       },
       error: (err) => {
         console.error('ModsComponent.addMod(): Error Creating a mod');
