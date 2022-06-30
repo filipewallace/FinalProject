@@ -75,7 +75,17 @@ export class UserModsComponent implements OnInit {
 
     };
 
-
+    deleteMod(id: number): void {
+      this.modSvc.destroy(id).subscribe({
+        next: (result) => {
+          this.reload();
+        },
+        error: (err) => {
+          console.error('ModComponent.deleteMod(): Error deleting Mod');
+          console.error(err);
+        },
+      });
+    }
 
 
 
