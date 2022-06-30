@@ -73,7 +73,7 @@ enableUser(user: User): void {
   }
 
   else{
-    user.id = 1;
+    user.enabled = 1;
     this.updateUser(user);
   }
 }

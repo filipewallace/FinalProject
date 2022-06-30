@@ -12,7 +12,21 @@
 
       <main>
 
-        <img src="https://s.yimg.com/ny/api/res/1.2/68aoN71RqLGpEhyU.4JLhA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MA--/https://s.yimg.com/uu/api/res/1.2/pc.Z7ZgHPq0oy7v4qqXMhA--~B/aD0xMDgwO3c9MTkyMDthcHBpZD15dGFjaHlvbg--/http://media.zenfs.com/en_US/News/US-AFPRelax/cyberpunk2077fe.7eddd152803.original.jpg" alt="">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="https://s.yimg.com/ny/api/res/1.2/68aoN71RqLGpEhyU.4JLhA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MA--/https://s.yimg.com/uu/api/res/1.2/pc.Z7ZgHPq0oy7v4qqXMhA--~B/aD0xMDgwO3c9MTkyMDthcHBpZD15dGFjaHlvbg--/http://media.zenfs.com/en_US/News/US-AFPRelax/cyberpunk2077fe.7eddd152803.original.jpg" alt="">
+            </div>
+            <div class="carousel-item ">
+              <img src="https://s0.2mdn.net/simgad/15870054113560584735" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="https://s0.2mdn.net/simgad/11298122598379816847" class="d-block w-100" alt="...">
+            </div>
+          </div>
+        </div>
+
+
 
 
 
@@ -157,7 +171,13 @@
 
         </footer>
     </div>
-
+<script>
+  var myCarousel = document.querySelector('#carouselExampleSlidesOnly')
+var carousel = new bootstrap.Carousel(myCarousel, {
+  interval: 2000,
+  wrap: false
+})
+</script>
 
 
   </body>
