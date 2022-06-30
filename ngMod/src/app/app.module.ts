@@ -30,6 +30,7 @@ import { GameModsPipe } from './pipes/game-mods.pipe';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { ActiveUserPipe } from './pipes/active-user.pipe';
 import { UserModsComponent } from './components/user-mods/user-mods.component';
+import { GameveiwComponent } from './components/gameveiw/gameveiw.component';
 
 
 
@@ -50,7 +51,8 @@ import { UserModsComponent } from './components/user-mods/user-mods.component';
     GameModsPipe,
     UserManagementComponent,
     ActiveUserPipe,
-    UserModsComponent
+    UserModsComponent,
+    GameveiwComponent
 
 
 

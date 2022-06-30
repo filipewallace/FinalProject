@@ -24,7 +24,7 @@
             </div>
             <h5 class="card-title"></h5>
             <div class="text-center my-4">
-              <a href="#" class="btn btn-primary" [routerLink]="['/games/'+g.id]">View</a>
+              <a  class="btn btn-primary" [routerLink]="['/games/'+g.id]">View</a>
 
               <button class="btn btn-danger" (click)="deleteGame(g.id)" *ngIf="isAdmin()" >Delete</button>
               <a class="btn btn-warning" (click)="open(content); editGame=g" *ngIf="isAdmin()">Edit</a>
