@@ -17,9 +17,9 @@
               }}</span>
 
               <span class="float-end price-hp">{{ m.description }}</span>
-              <ngb-rating [(rate)]="currentRate"></ngb-rating>
-              <hr>
-              <pre>Rate: <b>{{currentRate}}</b></pre>
+              <!-- <ngb-rating [(rate)]="currentRate"></ngb-rating> -->
+              <!-- <hr> -->
+              <!-- <pre>Rate: <b>{{currentRate}}</b></pre> -->
             </div>
             <h5 class="card-title"></h5>
             <div class="text-center my-4">
@@ -106,7 +106,8 @@
       <label for="price">Price</label>
       <input type="number" name="price" class="form-control"  [(ngModel)]="newMod.price">
 
-        <select name="game.id" id="" [(ngModel)]="newMod.game.id">
+        <label for="game.id">Select Game</label>
+        <select class="form-control" name="game.id" id="" [(ngModel)]="newMod.game.id">
           <option value="{{g.id}}" *ngFor="let g of games">{{g.name}}</option>
         </select>
 
